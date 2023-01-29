@@ -6,6 +6,7 @@ const color = require("colors"); // for colors in terminal
 const dotenv = require("dotenv"); // for loading env files
 const connectDB = require("./config/db"); // loading database connect function
 const errorHandler = require("./middlewares/error");
+var cookieParser = require("cookie-parser");
 
 // Loading env files
 dotenv.config({ path: "./config/config.env" });
@@ -20,6 +21,7 @@ connectDB();
 
 //for parsing body
 app.use(express.json());
+app.use(cookieParser());
 
 // Load routers
 const auth = require("./routes/auth");
