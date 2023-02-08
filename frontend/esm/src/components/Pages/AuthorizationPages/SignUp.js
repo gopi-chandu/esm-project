@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../UI/Button";
-import Card from "../UI/Card";
-import bg from "../../assets/images/bg.jpg";
+import Button from "../../UI/Button";
+import Card from "../../UI/Card";
+import bg from "../../../assets/images/bg.jpg";
 const SignUp = () => {
   return (
     <React.Fragment>
