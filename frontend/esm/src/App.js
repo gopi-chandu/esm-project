@@ -10,8 +10,8 @@ function App() {
     <div className="App  bg-gradient-to-r from-blue-600 to-blue-400">
       <div className="flex flex-row">
         <SideBar></SideBar>
-        {/* <EventPage></EventPage> */}
-        <EventsPage></EventsPage>
+        <EventPage></EventPage>
+        {/* <EventsPage></EventsPage> */}
       </div>
       {/* <SignUp /> */}
       {/* <Login /> */}

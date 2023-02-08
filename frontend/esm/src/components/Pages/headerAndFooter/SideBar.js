@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const SideBar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Home", src: "Chart_fill" },
     { title: "Clubs", src: "Chat" },
@@ -16,7 +16,7 @@ const SideBar = () => {
   return (
     <div
       className={` sticky top-0 ${
-        open ? "w-full md:w-1/2" : "w-20 "
+        open ? "w-full md:w-1/4" : "w-20 "
       } bg-blue-700 h-screen p-5  pt-8 relative duration-300`}
     >
       <img
@@ -28,7 +28,11 @@ const SideBar = () => {
       <div className="flex gap-x-4 items-center flex-col">
         <img
           src="https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1"
-          className={` rounded rounded-3xl cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
+          className={`${
+            open && "h-20 w-20"
+          }rounded rounded-3xl cursor-pointer duration-500 ${
+            open && "rotate-[360deg]"
+          }`}
         />
         <h1
           className={`text-white origin-left font-medium text-xl duration-200 ${
