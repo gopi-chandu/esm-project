@@ -5,7 +5,7 @@ const asyncHandler = require("./async");
 
 // create a middleware to make sure the user is logged in
 module.exports.protect = asyncHandler(async (req, res, next) => {
-  // console.log("req user", req.headers);
+  // console.log("req user", req.headers.authorization);
   let token;
   if (
     req.headers.authorization &&
@@ -15,16 +15,14 @@ module.exports.protect = asyncHandler(async (req, res, next) => {
   } else if (req.cookie.token) {
     token = req.cookie.token;
   }
-
   if (!token) {
     return next(new ErrorResponse("Not Authorized to access this route", 401));
   }
+
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decoded.id);
-
     next();
-    // const user = User.findOne({});
   } catch (err) {
     return next(new ErrorResponse("Not Authorized", 401));
   }

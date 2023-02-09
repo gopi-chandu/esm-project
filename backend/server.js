@@ -25,9 +25,11 @@ app.use(cookieParser());
 
 // Load routers
 const auth = require("./routes/auth");
+const event = require("./routes/event");
 
 //use the routes
 app.use("/api/v1/auth", auth);
+app.use("/api/v1/events", event);
 
 // Error handler
 app.use(errorHandler);

@@ -54,7 +54,7 @@ module.exports.getMe = asyncHandler(async (req, res, next) => {
 
 const sendTokenResponse = (user, statusCode, res) => {
   const token = user.getJWTToken();
-  console.log("User : ", token);
+  // console.log("User : ", token);
   let options = {
     expire: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRE + 24 * 60 * 60 * 1000
