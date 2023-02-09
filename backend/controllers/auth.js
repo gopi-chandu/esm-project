@@ -15,7 +15,7 @@ module.exports.register = asyncHandler(async (req, res, next) => {
       role,
     });
     // send user,status code, response
-    sendTokenResponse(user, 200, res);
+    sendTokenResponse(newUser, 200, res);
   }
 
   return next(new ErrorResponse("User already exists ", 401));

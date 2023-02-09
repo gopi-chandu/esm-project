@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const EventSchema = new mongoose.Schema({
   title: {
     type: String,
+    unique: true,
     trim: true,
     required: [true, "Please add a course title"],
   },
@@ -12,8 +13,9 @@ const EventSchema = new mongoose.Schema({
   },
   capacity: {
     type: Number,
+    default: -1,
   },
-//   photo will be added later for event
+  //   photo will be added later for event
   entryFee: {
     type: Number,
     default: 0,
