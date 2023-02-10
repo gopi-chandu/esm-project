@@ -15,8 +15,8 @@ const SideBar = () => {
   ];
   return (
     <div
-      className={` sticky top-0 ${
-        open ? "w-full md:w-1/4" : "w-20 "
+      className={`flex-none sticky top-0 ${
+        open ? "w-full md:w-1/6" : "w-20"
       } bg-blue-700 h-screen p-5  pt-8 relative duration-300`}
     >
       <img

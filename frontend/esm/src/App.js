@@ -11,7 +11,7 @@ function App() {
       <div className="flex flex-row">
         <SideBar></SideBar>
         <EventPage></EventPage>
-        {/* <EventsPage></EventsPage> */}
+        {/* <EventsPage ></EventsPage> */}
       </div>
       {/* <SignUp /> */}
       {/* <Login /> */}
