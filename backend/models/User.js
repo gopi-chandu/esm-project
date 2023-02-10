@@ -34,6 +34,10 @@ const UserSchema = new mongoose.Schema({
 
 //Encrypt password
 UserSchema.pre("save", async function (next) {
+  if(!this.isModified('password')){
+    next()
+  }
+  // Hashing should only happen if the password field is modified , so we use thsi check, if we update user and the password does not modify then also this function will rerun and hash it again , to avoid such doubel hasjing on update user we use this function
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
