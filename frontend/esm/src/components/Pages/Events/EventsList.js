@@ -1,9 +1,15 @@
-import React from "react";
-import { data } from "../../../assets/seed/data";
-import EventItem from "../Events/EventItem";
+import React, { useEffect ,useState} from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+
+// Pages
+import EventItem from "../Events/EventItem";
+
+// Data Seeder
+// import { data } from "../../../assets/seed/data";
+
 const EventsList = () => {
-  // let data=props.data/
+  const [data, setData] = useState([]);
   // let content=0;
   let content = data.map((element, index) => {
     let url = "/events/" + element.id;
@@ -15,6 +21,31 @@ const EventsList = () => {
       </li>
     );
   });
+
+  // Runs only when the component loads
+  useEffect(() => {
+    axios.defaults.baseURL = "https://api.example.com";
+    axios.defaults.headers.common["Authorization"] = "AUTH_TOKEN";
+    axios.defaults.headers.post["Content-Type"] = "application/json";
+    axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
+    axios
+      .get("http://localhost:5000/api/v1/events/")
+      .then((data) => {
+        console.log(data.data.data);
+        setData(data.data.data);
+      })
+      .catch((err) => console.log(err));
+    // let serverUrl = "http://localhost:5000/api/v1/events/";
+    // axios(serverUrl, {
+    //   method: "GET",
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Content-Type": "application/json",
+    //     mode: "no-cors",
+    //   },
+    // })
+  }, []);
+
   return (
     <React.Fragment>
       <div className=" md:text-left text-center bg-red-300 h-30 p-2 text-3xl bg-blue-500 shadow shadow-lg">
@@ -68,7 +99,7 @@ const EventsList = () => {
         {}
       </div>
       <div className="mt-10 flex flex-row flex-wrap justify-center">
-        {console.log(data)}
+        {/* {console.log(data)} */}
         {content}
       </div>
     </React.Fragment>

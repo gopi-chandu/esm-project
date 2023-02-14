@@ -19,6 +19,10 @@ const io = socketio(server);
 //connect to database
 connectDB();
 
+//CORS
+const cors = require("cors");
+app.use(cors());
+
 //for parsing body
 app.use(express.json());
 app.use(cookieParser());
