@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema({
       "Please add a valid email",
     ],
   },
+  photo: {
+    type: String,
+    default: "no-photo.png",
+  },
   role: {
     type: String,
     enum: ["admin", "user", "club-owner"],
@@ -34,8 +38,8 @@ const UserSchema = new mongoose.Schema({
 
 //Encrypt password
 UserSchema.pre("save", async function (next) {
-  if(!this.isModified('password')){
-    next()
+  if (!this.isModified("password")) {
+    next();
   }
   // Hashing should only happen if the password field is modified , so we use thsi check, if we update user and the password does not modify then also this function will rerun and hash it again , to avoid such doubel hasjing on update user we use this function
   const salt = await bcrypt.genSalt(10);
@@ -47,7 +51,7 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 // JWT token sending
-UserSchema.methods.getJWTToken =function() {
+UserSchema.methods.getJWTToken = function () {
   // use id for key in web token
   return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,

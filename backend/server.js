@@ -7,6 +7,7 @@ const dotenv = require("dotenv"); // for loading env files
 const connectDB = require("./config/db"); // loading database connect function
 const errorHandler = require("./middlewares/error");
 var cookieParser = require("cookie-parser");
+const fileupload = require("express-fileupload");
 
 // Loading env files
 dotenv.config({ path: "./config/config.env" });
@@ -23,9 +24,16 @@ connectDB();
 const cors = require("cors");
 app.use(cors());
 
+// File uploading
+app.use(fileupload());
+
 //for parsing body
 app.use(express.json());
 app.use(cookieParser());
+
+
+//Set public folder as our static folder, to tell node that it is our static folder
+app.use(express.static(path.join(__dirname, "public")));
 
 // Load routers
 const auth = require("./routes/auth");

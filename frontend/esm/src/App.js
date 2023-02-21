@@ -1,70 +1,96 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useContext } from "react";
 import "./App.css";
-import Login from "./components/Pages/AuthorizationPages/Login";
-import SignUp from "./components/Pages/AuthorizationPages/SignUp";
-import EventsList from "./components/Pages/Events/EventsList";
-import EventsPage from "./components/Pages/Events/EventsPage";
-import EventPage from "./components/Pages/Events/EventPage";
-import SideBar from "./components/Pages/headerAndFooter/SideBar";
+// common page
+import SideBar from "./components/bars/SideBar";
+import SideBar2 from "./components/bars/SideBar2";
+import BottomBar from "./components/bars/BottomBar";
 
-import { Route, Routes } from "react-router-dom";
+// Auth Pages
+import Login from "./pages/Authentication/Login";
+import SignUp from "./pages/Authentication/SignUp";
+
+// Event Pages
+import EventsPage from "./pages/Events/EventsPage";
+import EventPage from "./pages/Events/EventPage";
+
+// User Pages
+import ProfilePage from "./pages/profilepage/ProfilePage";
+import ProfileForm from "./pages/profilepage/ProfileForm";
+
+// State management context API
+import AuthContext from "./store/auth-context";
+
 function App() {
+  const ctx = useContext(AuthContext);
+  let eventsPage = <Login></Login>;
+  let profilePage = <Login></Login>;
+  if (ctx.isLoggedIn) {
+    eventsPage = (
+      <div className="flex flex-row">
+        <SideBar></SideBar>
+        <EventsPage></EventsPage>
+        <BottomBar></BottomBar>
+      </div>
+    );
+
+    profilePage = (
+      <div className="">
+        <div className="w-96 absolute">
+          <SideBar2></SideBar2>
+        </div>
+        <ProfilePage></ProfilePage>
+        <BottomBar></BottomBar>
+      </div>
+    );
+  }
   return (
     <div>
       <div className="App bg-blue-700">
         <Routes>
-          <Route path="/" element={<Login></Login>}></Route>
-          <Route path="/login" element={<Login></Login>}></Route>
-          <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
-          <Route
-            path="/events"
-            element={
-              <div className="flex flex-row">
-                <SideBar></SideBar>
-                <EventsPage></EventsPage>
-              </div>
-            }
-          ></Route>
+          {!ctx.isLoggedIn && (
+            <Route path="/login" element={<Login></Login>}></Route>
+          )}
+          {!ctx.isLoggedIn && (
+            <Route path="/" element={<Login></Login>}></Route>
+          )}
+          {ctx.isLoggedIn && <Route path="/" element={eventsPage}></Route>}
+          {!ctx.isLoggedIn && (
+            <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
+          )}
+
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+
+          {ctx.isLoggedIn && (
+            <Route path="/profile" element={profilePage}></Route>
+          )}
+
+          <Route path="/events" element={eventsPage}></Route>
+
+          {ctx.isLoggedIn && (
+            <Route
+              path="/events/:eventId"
+              element={
+                <div className="flex flex-row">
+                  <SideBar></SideBar>
+                  <EventPage></EventPage>
+                </div>
+              }
+            ></Route>
+          )}
           <Route
             path="/events/:eventId"
-            element={
-              <div className="flex flex-row">
-                <SideBar></SideBar>
-                <EventPage ></EventPage>
-              </div>
-            }
+            element={<Navigate to="/" replace />}
           ></Route>
-          {/* <Route path="/home">
-            <div className="flex flex-row">
-              <SideBar></SideBar>
-              <EventsPage></EventsPage>
-            </div>
-          </Route>
-          <Route path="/events/:eventId">
-            <div className="flex flex-row">
-              <SideBar></SideBar>
-              <EventPage></EventPage>
-            </div>
-          </Route>
-          <Route path="/">
-            <SignUp />
-          </Route> */}
         </Routes>
       </div>
     </div>
   );
 }
-// function App() {
-//   return (
-//     // bg-gradient-to-r from-blue-600 to-blue-400
-//     <div className="App bg-blue-700">
-//       <div className="flex flex-row">
-//         <SideBar></SideBar>
-//         {/* <EventPage></EventPage> */}
-//         <EventsPage ></EventsPage>
-//       </div>
-//       {/* <SignUp /> */}
-//       {/* <Login /> */}
-//     </div>
-//   );
-// }
+
 export default App;

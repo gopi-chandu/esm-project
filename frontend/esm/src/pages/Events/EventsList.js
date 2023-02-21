@@ -1,14 +1,16 @@
-import React, { useEffect ,useState} from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate, NavLink } from "react-router-dom";
 import axios from "axios";
-
+import LoadingAnimation from "../../components/UI/LoadingAnimation";
 // Pages
 import EventItem from "../Events/EventItem";
+import AuthContext from "../../store/auth-context";
 
 // Data Seeder
 // import { data } from "../../../assets/seed/data";
 
 const EventsList = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   // let content=0;
   let content = data.map((element, index) => {
@@ -33,6 +35,11 @@ const EventsList = () => {
       .then((data) => {
         console.log(data.data.data);
         setData(data.data.data);
+        setTimeout(() => {
+          setIsLoading(false);
+
+          console.log("data : ", data);
+        }, 500);
       })
       .catch((err) => console.log(err));
     // let serverUrl = "http://localhost:5000/api/v1/events/";
@@ -99,8 +106,8 @@ const EventsList = () => {
         {}
       </div>
       <div className="mt-10 flex flex-row flex-wrap justify-center">
-        {/* {console.log(data)} */}
-        {content}
+        {isLoading && <LoadingAnimation></LoadingAnimation>}
+        {!isLoading && content}
       </div>
     </React.Fragment>
   );

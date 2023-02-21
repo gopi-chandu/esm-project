@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 // temporary import
-import { data } from "../../../assets/seed/data";
+import { data } from "../../assets/seed/data";
 
 const EventPage = () => {
   let params = useParams();

@@ -1,8 +1,17 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Navigate, NavLink } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
-  const [open, setOpen] = useState(true);
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+  const logoutButtonHandler = () => {
+    ctx.logout();
+    navigate("/");
+  };
+
+  const [open, setOpen] = useState(false);
   const Menus = [
     { title: "Home", src: "Chart_fill", to: "/" },
     { title: "Events", src: "Chat", to: "/events" },
@@ -11,17 +20,12 @@ const SideBar = () => {
     { title: "Articles", src: "Chat", to: "/articles" },
     { title: "About", src: "Chat", to: "/about" },
     // { title: "Accounts", src: "User", gap: true },
-    // { title: "Schedule ", src: "Calendar" },
-    // { title: "Search", src: "Search" },
-    // { title: "Analytics", src: "Chart" },
-    // { title: "Files ", src: "Folder", gap: true },
-    // { title: "Setting", src: "Setting" },
   ];
   let url =
     "https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1";
   return (
     <div
-      className={`flex-none sticky top-0 ${
+      className={`hidden md:block flex-none sticky top-0 ${
         open ? "w-full md:w-1/6" : "w-20"
       } bg-blue-700 h-screen p-5  pt-8 relative duration-300`}
     >
@@ -69,6 +73,17 @@ const SideBar = () => {
           </li>
         ))}
       </ul>
+      {/* logout */}
+      <button
+        onClick={logoutButtonHandler}
+        className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-2 
+              mt-9 `}
+      >
+        <img src={`/images/Chat.png`} />
+        <span className={`${!open && "hidden"} origin-left duration-200`}>
+          Logout
+        </span>
+      </button>
     </div>
   );
 };

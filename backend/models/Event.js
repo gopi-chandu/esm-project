@@ -15,7 +15,10 @@ const EventSchema = new mongoose.Schema({
     type: Number,
     default: -1,
   },
-  //   photo will be added later for event
+  photo: {
+    type: String,
+    default: "no-photo.png",
+  },
   entryFee: {
     type: Number,
     default: 0,
