@@ -1,0 +1,128 @@
+[
+  {
+    "_id": "63f5da40fc13ae0b37000064",
+    "title": "Fort Smith",
+    "description": "Puncture wound with foreign body of lower leg",
+    "capacity": 1,
+    "entryFee": 14,
+    "startDate": "8/6/2022",
+    "endDate": "3/3/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000065",
+    "title": "San Luis",
+    "description": "Encounter for screening for malignant neoplasm of skin",
+    "capacity": 2,
+    "entryFee": 6,
+    "startDate": "3/12/2022",
+    "endDate": "10/22/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000066",
+    "title": "New York",
+    "description": "Galeazzi's fracture of unspecified radius, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with delayed healing",
+    "capacity": 3,
+    "entryFee": 26,
+    "startDate": "11/12/2022",
+    "endDate": "5/27/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000067",
+    "title": "Latrobe",
+    "description": "Deviation of ureter",
+    "capacity": 4,
+    "entryFee": 24,
+    "startDate": "6/14/2022",
+    "endDate": "11/4/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000068",
+    "title": "Kiana",
+    "description": "Displacement of internal fixation device of bone of right forearm",
+    "capacity": 5,
+    "entryFee": 10,
+    "startDate": "11/7/2022",
+    "endDate": "5/20/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000069",
+    "title": "Austin",
+    "description": "Alcohol abuse with intoxication, unspecified",
+    "capacity": 6,
+    "entryFee": 60,
+    "startDate": "9/21/2022",
+    "endDate": "12/7/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b3700006a",
+    "title": "Malang Java Island",
+    "description": "Diabetes mellitus due to underlying condition with unspecified diabetic retinopathy",
+    "capacity": 7,
+    "entryFee": 10,
+    "startDate": "12/9/2022",
+    "endDate": "5/6/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b3700006b",
+    "title": "Lamu",
+    "description": "Congenital malformation of great vein, unspecified",
+    "capacity": 8,
+    "entryFee": 48,
+    "startDate": "12/18/2022",
+    "endDate": "1/11/2023"
+  },
+  {
+    "_id": "63f5da40fc13ae0b3700006c",
+    "title": "Taubaté",
+    "description": "Postprocedural cardiac arrest following cardiac surgery",
+    "capacity": 9,
+    "entryFee": 16,
+    "startDate": "8/9/2022",
+    "endDate": "1/26/2023"
+  },
+  {
+    "_id": "63f5da40fc13ae0b3700006d",
+    "title": "Benghazi",
+    "description": "Crohn's disease of small intestine with complications",
+    "capacity": 10,
+    "entryFee": 74,
+    "startDate": "8/9/2022",
+    "endDate": "5/9/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b3700006e",
+    "title": "St. Petersburg",
+    "description": "Burn of cornea and conjunctival sac, unspecified eye, sequela",
+    "capacity": 11,
+    "entryFee": 7,
+    "startDate": "8/11/2022",
+    "endDate": "7/8/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b3700006f",
+    "title": "Boston",
+    "description": "Strain of unspecified muscle, fascia and tendon at shoulder and upper arm level, left arm, initial encounter",
+    "capacity": 12,
+    "entryFee": 80,
+    "startDate": "5/17/2022",
+    "endDate": "9/28/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000071",
+    "title": "Bratsk",
+    "description": "Food in larynx causing asphyxiation, initial encounter",
+    "capacity": 14,
+    "entryFee": 72,
+    "startDate": "10/1/2022",
+    "endDate": "12/22/2022"
+  },
+  {
+    "_id": "63f5da40fc13ae0b37000072",
+    "title": "Mount Hagen",
+    "description": "Laceration of intrinsic muscle, fascia and tendon of left little finger at wrist and hand level, sequela",
+    "capacity": 15,
+    "entryFee": 98,
+    "startDate": "10/6/2022",
+    "endDate": "11/13/2022"
+  }
+]

@@ -36,6 +36,12 @@ const EventSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  // Each event has to be linked to a club
+  // club: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "Club",
+  //   required: true,
+  // },
 });
 
 module.exports = mongoose.model("Event", EventSchema);

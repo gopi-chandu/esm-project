@@ -2,7 +2,7 @@
 import React, { useContext, useRef } from "react";
 import { Navigate, NavLink } from "react-router-dom";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 
 // Assets
@@ -11,6 +11,8 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const LoginSubmitHandler = (e) => {
     e.preventDefault();
     const enteredEmail = emailInputRef.current.value;
@@ -29,6 +31,7 @@ const Login = () => {
       })
       .then((data) => {
         ctx.login(data.data.token);
+        navigate("/");
         console.log("data : ", data.data.token);
       })
       .catch((err) => console.log(err));
@@ -81,7 +84,13 @@ const Login = () => {
                   </button>
                   <div className="space-x-1 text-sm text-center text-md">
                     New to ESM?
-                    <NavLink to="/sign-up" className="font-semibold text-blue-500"> Sign Up</NavLink>
+                    <NavLink
+                      to="/sign-up"
+                      className="font-semibold text-blue-500"
+                    >
+                      {" "}
+                      Sign Up
+                    </NavLink>
                   </div>
                 </div>
               </form>

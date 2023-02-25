@@ -14,7 +14,7 @@ const EventsList = () => {
   const [data, setData] = useState([]);
   // let content=0;
   let content = data.map((element, index) => {
-    let url = "/events/" + element.id;
+    let url = "/events/" + element._id;
     return (
       <li key={index} className="list-none">
         <NavLink to={url}>

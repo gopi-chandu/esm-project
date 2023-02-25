@@ -6,7 +6,7 @@ import EventsList from "./EventsList";
 const EventsPage = () => {
   const ctx = useContext(AuthContext);
   return (
-    <div className="bg-blue-300 h-screen w-full">
+    <div className="bg-blue-300 h-full w-full">
       <EventsList></EventsList>
     </div>
   );

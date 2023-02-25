@@ -20,6 +20,7 @@ import ProfileForm from "./pages/profilepage/ProfileForm";
 
 // State management context API
 import AuthContext from "./store/auth-context";
+import AdminPage from "./pages/Admin/AdminPage";
 
 function App() {
   const ctx = useContext(AuthContext);
@@ -69,6 +70,9 @@ function App() {
           {ctx.isLoggedIn && (
             <Route path="/profile" element={profilePage}></Route>
           )}
+          {ctx.isLoggedIn && (
+            <Route path="/admin" element={<AdminPage />}></Route>
+          )}
 
           <Route path="/events" element={eventsPage}></Route>
 
@@ -76,9 +80,10 @@ function App() {
             <Route
               path="/events/:eventId"
               element={
-                <div className="flex flex-row">
+                <div className="flex">
                   <SideBar></SideBar>
                   <EventPage></EventPage>
+                  <BottomBar></BottomBar>
                 </div>
               }
             ></Route>

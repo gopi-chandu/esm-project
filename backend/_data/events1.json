@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "63f5d767fc13ae0c39000000",
+    "title": "Kagoshima",
+    "description": 0,
+    "capacity": 1,
+    "entryFee": 78,
+    "startDate": "4/1/2022",
+    "endDate": "8/4/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000001",
+    "title": "Urengoy",
+    "description": 0,
+    "capacity": 2,
+    "entryFee": 98,
+    "startDate": "4/16/2022",
+    "endDate": "2/17/2023"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000002",
+    "title": "Siborong-Borong",
+    "description": 1,
+    "capacity": 3,
+    "entryFee": 19,
+    "startDate": "6/14/2022",
+    "endDate": "5/8/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000003",
+    "title": "Gafsa",
+    "description": 0,
+    "capacity": 4,
+    "entryFee": 27,
+    "startDate": "5/11/2022",
+    "endDate": "6/9/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000004",
+    "title": "Bell Island",
+    "description": 0,
+    "capacity": 5,
+    "entryFee": 74,
+    "startDate": "7/13/2022",
+    "endDate": "5/8/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000005",
+    "title": "Inta",
+    "description": 0,
+    "capacity": 6,
+    "entryFee": 14,
+    "startDate": "2/4/2023",
+    "endDate": "6/19/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000006",
+    "title": "Ileg",
+    "description": 0,
+    "capacity": 7,
+    "entryFee": 52,
+    "startDate": "5/2/2022",
+    "endDate": "4/30/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000007",
+    "title": "Tegucigalpa",
+    "description": 1,
+    "capacity": 8,
+    "entryFee": 50,
+    "startDate": "9/7/2022",
+    "endDate": "1/21/2023"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000008",
+    "title": "Idiofa",
+    "description": 0,
+    "capacity": 9,
+    "entryFee": 48,
+    "startDate": "6/22/2022",
+    "endDate": "5/15/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c39000009",
+    "title": "Trabzon",
+    "description": 1,
+    "capacity": 10,
+    "entryFee": 93,
+    "startDate": "2/2/2023",
+    "endDate": "2/5/2023"
+  },
+  {
+    "_id": "63f5d767fc13ae0c3900000a",
+    "title": "Puerto Montt",
+    "description": 1,
+    "capacity": 11,
+    "entryFee": 90,
+    "startDate": "9/4/2022",
+    "endDate": "12/23/2022"
+  },
+  {
+    "_id": "63f5d767fc13ae0c3900000b",
+    "title": "Baudette",
+    "description": 1,
+    "capacity": 12,
+    "entryFee": 2,
+    "startDate": "11/17/2022",
+    "endDate": "2/8/2023"
+  }
+]

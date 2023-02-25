@@ -34,6 +34,11 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  club: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Club",
+    required: false,
+  },
 });
 
 //Encrypt password

@@ -45,7 +45,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
 // @access Private
 module.exports.getMe = asyncHandler(async (req, res, next) => {
   // find and get the user
-  const user = await User.findById(req.user.id);
+  const user = await User.findById(req.user.id).populate("club");
   return res.status(200).json({
     success: true,
     data: user,
@@ -64,6 +64,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 
   return res
     .status(statusCode)
-    .cookie("token", token,options)
+    .cookie("token", token, options)
     .json({ success: true, token: token });
 };

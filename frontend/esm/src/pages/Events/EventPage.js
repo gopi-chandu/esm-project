@@ -1,56 +1,95 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // temporary import
 import { data } from "../../assets/seed/data";
+import AuthContext from "../../store/auth-context";
 
 const EventPage = () => {
   let params = useParams();
-
+  // const [isLoading, setIsLoading] = useState(true);
   // call the database from here , wait for it to return
   // display result
-  //
-  console.log(params);
-  let e = data.filter((e) => e.id == params.eventId);
-  e = e[0];
-  console.log(e);
+
+  // get the user using api request
+  const ctx = useContext(AuthContext);
+  let e;
+  const [eventData, setEventData] = useState("");
+  useEffect(() => {
+    //make api call , use the params to get the id
+
+    console.log("params :", params);
+    let userDetails;
+    axios
+      .get(`http://localhost:5000/api/v1/events/${params.eventId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + ctx.token,
+        },
+      })
+      .then((data) => {
+        let d = data.data.data;
+        setEventData(d);
+      })
+      .catch((err) => console.log(err));
+    // remove time out just before deploying
+    //   setTimeout(() => {
+    //     // setIsLoading(false);
+
+    //     console.log("data : ", userData);
+    //   }, 500);
+    // })
+  }, []);
+
+  // let e = data.filter((e) => e.id == params.eventId);
+  // e = e[0];
+  // console.log(e);
   let url =
-    "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/26a13d14dd8849a6d7ad2655cd9c270e91190387432e6ee139096da7bec65cd4._RI_V_TTW_.png";
+    "https://www.etonline.com/sites/default/files/images/2022-09/Sydney_Sweeney_GettyImages-1423200387_1280.jpg";
+
   return (
-    <div className=" bg-blue-700 mx-auto w-full md:ml-10">
-      <div className="flex flex-col md:flex-row m-5 items-start justify-center ">
+    <div className="w-full h-full ">
+      <p className="text-3xl p-3 underline text-white">{eventData.title}</p>
+
+      <div className="h-screen flex flex-col items-center md:flex-row justify-center gap-x-10 bg-blue-400 md:items-start items-start p-4 justify-center">
         {/* left */}
-        <div className="">
+        <div className="scale-110">
           <img
-            className="h-60 mr-0 md:mt-3 m-3 md:w-100 w-80  shadow-xl rounded-lg overflow-hidden transform duration-500 hover:-translate-y-1 "
+            className="object-cover h-60 mr-0 m-3 md:mt-10  md:w-100 w-80  shadow-xl rounded-lg overflow-hidden transform duration-500 hover:-translate-y-1 "
             src={url}
           ></img>
         </div>
-        {/* right */}
-        <div className="ml-3 md:m-3 bg-blue-700 rounded rounded-md shadow-xl md:w-1/2 w-80 md:h-full mt-4 md:mt-3 h-fit flex flex-col rounded rounded-lg space-y-3 text-left p-2 text-md bg-gradient-to-r from-blue-400 to-blue-200 p-3">
+
+        <div className="h-fit w-fit mx-20 md:mx-0 md:h-80 bg-blue-300 rounded-lg mt-4 p-3">
+          {/* right */}
+
           <div className="flex flex-row gap-2 ">
             <p className="bg-white font-semibold p-1 m-1 ml-2 mb-0 rounded text-xl "></p>
-            <p className="mt-1 text-2xl font-semibold">{e.name}</p>
+            <p className="mt-1 text-2xl font-semibold">{eventData.title}</p>
           </div>
           <div className="flex flex-col gap-2 justify-between ">
             <p className="font-semibold bg-white w-fit  p-1 m-2 mt-4 rounded  mb-0 ">
               Description{" "}
             </p>
-            <p className="ml-2">{e.description}</p>
+            <p className="ml-2 text-left">{eventData.description}</p>
           </div>
           <div className="flex flex-row gap-2  mb-0 ">
             <p className="bg-white w-fit  p-1 m-1 rounded font-semibold">
               Capacity
             </p>
-            <p className="mt-1">{e.capacity}</p>
+            <p className="mt-1">{eventData.capacity}</p>
           </div>
           <div className="flex flex-row gap-2  mb-0 ">
             <p className="bg-white w-fit p-1 m-1 rounded font-semibold">
               Entry fee
             </p>
-            <p className="mt-1">{e.price}</p>
+            <p className="mt-1">
+              {"$ "}
+              {eventData.entryFee}
+            </p>
           </div>
-          <div className="ml-auto mr-0 text-right m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 bg-green-300 rounded rounded-lg shadow shadow-md">
+          <div className="w-40 ml-auto mr-0 text-left m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 pl-4 bg-green-300 rounded rounded-lg shadow shadow-md">
             <p className="font-semibold">Register Now !!!</p>
           </div>
         </div>

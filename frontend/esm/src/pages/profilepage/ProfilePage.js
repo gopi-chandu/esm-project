@@ -63,7 +63,7 @@ const ProfilePage = () => {
           ></img>
         </div>
 
-        <div className="h-fit md:w-96 md:h-80 bg-blue-300 rounded-lg mt-4 p-3">
+        <div className="h-fit md:w-96 md:h-80 bg-blue-300 rounded-lg mt-4 p-3 mb-40">
           <ProfileForm user={userData}></ProfileForm>
         </div>
       </div>
@@ -79,6 +79,6 @@ const ProfilePage = () => {
   );
 };
 const bgClass =
-  "h-screen bg-gradient-to-r from-blue-500 to-blue-300 md:justify-center items-center opacity-100 ";
+  "h-full bg-gradient-to-r from-blue-500 to-blue-300 md:justify-center items-center opacity-100 ";
 
 export default ProfilePage;
