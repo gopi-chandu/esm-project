@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import TextInputUI from "./TextInputUI";
 
 const ProfileForm = (props) => {
-  let club = props.user.club.title;
-  console.log(props.user.club.title);
+  let club = props?.user?.club?.title;
+  console.log(club);
   const nameRef = useRef();
   const [edit, setEdit] = useState(false);
 
@@ -48,6 +48,7 @@ const ProfileForm = (props) => {
       <button className={btnClass} type="submit">
         Update
       </button>
+
     </form>
   );
 };

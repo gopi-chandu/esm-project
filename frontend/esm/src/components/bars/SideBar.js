@@ -21,8 +21,6 @@ const SideBar = () => {
     { title: "About", src: "Chat", to: "/about" },
     // { title: "Accounts", src: "User", gap: true },
   ];
-  let url =
-    "https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1";
   return (
     <div
       className={`hidden md:block flex-none sticky top-0 ${
@@ -30,6 +28,7 @@ const SideBar = () => {
       } bg-blue-700 h-screen p-5  pt-8 relative duration-300`}
     >
       {/* back button to close */}
+
       <img
         src="/images/control.png"
         className={`absolute cursor-pointer -right-3 top-9 w-7 border-blue-700
@@ -39,7 +38,7 @@ const SideBar = () => {
       {/* Logo Image */}
       <div className="flex gap-x-4 items-center flex-col">
         <img
-          src={url}
+          src={`/images/${1024}.png`}
           className={`${
             open && "h-20 w-20"
           }rounded rounded-3xl cursor-pointer duration-500 ${

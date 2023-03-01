@@ -7,6 +7,10 @@ import AuthContext from "../../store/auth-context";
 
 // Assets
 import bg from "../../assets/images/bg.jpg";
+
+//Configs
+import configData from "../../config.json";
+
 const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -24,7 +28,7 @@ const Login = () => {
     console.log(inputData);
     let token = 123;
     axios
-      .post("http://localhost:5000/api/v1/auth/login", inputData, {
+      .post(`${configData.SERVER_URL}/api/v1/auth/login`, inputData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -13,6 +13,10 @@ import bg from "../../assets/images/bg.jpg";
 import AuthContext from "../../store/auth-context";
 import { useContext } from "react";
 
+
+//Configs
+import configData from "../../config.json";
+
 const SignUp = () => {
   const nameRef = useRef();
   const emailRef = useRef();
@@ -33,7 +37,7 @@ const SignUp = () => {
     };
 
     axios
-      .post("http://localhost:5000/api/v1/auth/register", user, {
+      .post(`${configData.SERVER_URL}/api/v1/auth/register`, user, {
         headers: {
           "Content-Type": "application/json",
         },

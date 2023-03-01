@@ -3,6 +3,9 @@ import TextInputUI from "../profilepage/TextInputUI";
 import TextAreaUI from "../profilepage/TextAreaUI";
 import axios from "axios";
 
+//Configs
+import configData from "../../config.json";
+
 const ClubForm = (props) => {
   const nameRef = useRef();
   const descriptionRef = useRef();
@@ -17,13 +20,13 @@ const ClubForm = (props) => {
     if (edit === true) {
       // post the request
       axios
-        .post("http://localhost:5000/api/v1/clubs/", data, {
+        .post(`${configData.SERVER_URL}/api/v1/clubs/`, data, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((data) => {
-            console.log("Successfully posted ... ")
+          console.log("Successfully posted ... ");
         })
         .catch((err) => console.log(err));
     }

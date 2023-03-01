@@ -9,7 +9,11 @@ import AuthContext from "../../store/auth-context";
 // Data Seeder
 // import { data } from "../../../assets/seed/data";
 
+//Configs
+import configData from "../../config.json";
+
 const EventsList = () => {
+  const ctx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   // let content=0;
@@ -31,17 +35,23 @@ const EventsList = () => {
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
     axios
-      .get("http://localhost:5000/api/v1/events/")
+      .get(`${configData.SERVER_URL}/api/v1/events/`)
       .then((data) => {
-        console.log(data.data.data);
+        ctx.setOffline(false);
+        // console.log(data.data.data);
         setData(data.data.data);
         setTimeout(() => {
           setIsLoading(false);
-
-          console.log("data : ", data);
+          localStorage.setItem("events", JSON.stringify(data.data.data));
+          // console.log("data : ", data);
         }, 500);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        ctx.setOffline(true);
+        const data = localStorage.getItem("events");
+        console.log("data: ", JSON.parse(data));
+        setData(JSON.parse(data));
+      });
     // let serverUrl = "http://localhost:5000/api/v1/events/";
     // axios(serverUrl, {
     //   method: "GET",
@@ -51,17 +61,39 @@ const EventsList = () => {
     //     mode: "no-cors",
     //   },
     // })
+    var networkDataReceived = false;
+    //////////////////////////
+    /// CACHE TESTING
+    // if ("caches" in window) {
+    //   caches
+    //     .match("/")
+    //     .then(function (response) {
+    //       if (response) {
+    //         return response.json();
+    //       }
+    //     })
+    //     .then(function (data) {
+    //       setIsLoading(false);
+    //       console.log("From cache", data);
+    //       if (!networkDataReceived) {
+    //         console.log("!!!");
+    //       }
+    //     })
+    //     .catch(function (err) {
+    //       console.log(err);
+    //     });
+    // }
   }, []);
 
   return (
     <React.Fragment>
-      <div className=" md:text-left text-center bg-red-300 h-30 p-2 text-3xl bg-blue-500 shadow shadow-lg">
-        <div className="ml-10 flex flex-col md:flex-row md:justify-between justify-center items-center ">
-          <p className="w-40 bg-white p-2 rounded rounded-lg mb-0">
+      <div className=" md:text-left text-center bg-red-300  h-30 p-2 text-3xl bg-blue-500 shadow shadow-lg">
+        <div className=" flex flex-col md:flex-row md:justify-between justify-center items-center ">
+          <p className="w-40 mx-auto bg-white p-2 rounded rounded-lg mb-3 ">
             Events List
           </p>
-          <form className=" scale-75">
-            <div className="">
+          <form className="scale-[90px]">
+            <div className="md:mr-20 md:mt-4">
               <label
                 htmlFor="default-search"
                 className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -108,6 +140,9 @@ const EventsList = () => {
       <div className="mt-10 flex flex-row flex-wrap justify-center">
         {isLoading && <LoadingAnimation></LoadingAnimation>}
         {!isLoading && content}
+        {ctx.isOffline && (
+          <div className="w-full h-20 bg-red-300">You are offline </div>
+        )}
       </div>
     </React.Fragment>
   );

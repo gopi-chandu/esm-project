@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { Offline, Online } from "react-detect-offline";
 import "./App.css";
 // common page
 import SideBar from "./components/bars/SideBar";
@@ -13,14 +14,20 @@ import SignUp from "./pages/Authentication/SignUp";
 // Event Pages
 import EventsPage from "./pages/Events/EventsPage";
 import EventPage from "./pages/Events/EventPage";
+// Offline pages
+import OfflinePage from "./pages/offlinepages/OfflinePage";
 
 // User Pages
 import ProfilePage from "./pages/profilepage/ProfilePage";
 import ProfileForm from "./pages/profilepage/ProfileForm";
 
+// Admin Page
+import AdminDashboard from "./pages/AdminPages/AdminDashboard";
+
 // State management context API
 import AuthContext from "./store/auth-context";
 import AdminPage from "./pages/Admin/AdminPage";
+import LoadingAnimation from "./components/UI/LoadingAnimation";
 
 function App() {
   const ctx = useContext(AuthContext);
@@ -45,8 +52,13 @@ function App() {
       </div>
     );
   }
+
   return (
     <div>
+      <Offline>
+        <div className="bg-yellow-300 rounded text-center">You are offline, you are being served cached content</div>
+      </Offline>
+
       <div className="App bg-blue-700">
         <Routes>
           {!ctx.isLoggedIn && (
@@ -54,6 +66,12 @@ function App() {
           )}
           {!ctx.isLoggedIn && (
             <Route path="/" element={<Login></Login>}></Route>
+          )}
+          {ctx.isLoggedIn && (
+            <Route
+              path="/admin"
+              element={<AdminDashboard></AdminDashboard>}
+            ></Route>
           )}
           {ctx.isLoggedIn && <Route path="/" element={eventsPage}></Route>}
           {!ctx.isLoggedIn && (
@@ -66,7 +84,10 @@ function App() {
           {/*  */}
           {/*  */}
           {/*  */}
-
+          <Route
+            path="/loading"
+            element={<LoadingAnimation></LoadingAnimation>}
+          ></Route>
           {ctx.isLoggedIn && (
             <Route path="/profile" element={profilePage}></Route>
           )}
@@ -75,6 +96,8 @@ function App() {
           )}
 
           <Route path="/events" element={eventsPage}></Route>
+
+          <Route path="/offline" element={<OfflinePage></OfflinePage>}></Route>
 
           {ctx.isLoggedIn && (
             <Route

@@ -1,2 +1,0 @@
-// Create Events ,delete events,update events,get events
-// make a get request with current user and check is the user is either admin or Club owner, if admin justshow all events,if club owner then show only club events of that club that the owner belongs to
