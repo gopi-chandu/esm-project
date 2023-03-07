@@ -24,11 +24,15 @@ import ProfileForm from "./pages/profilepage/ProfileForm";
 // Admin Page
 import AdminDashboard from "./pages/AdminPages/AdminDashboard";
 
+// Chat Page 
+import ChatPage from "./pages/ChatPages/ChatPage";
+// Map Page 
+import MapPage from "./pages/MapPage/MapPage";
+
 // State management context API
 import AuthContext from "./store/auth-context";
 import AdminPage from "./pages/Admin/AdminPage";
 import LoadingAnimation from "./components/UI/LoadingAnimation";
-
 function App() {
   const ctx = useContext(AuthContext);
   let eventsPage = <Login></Login>;
@@ -56,7 +60,9 @@ function App() {
   return (
     <div>
       <Offline>
-        <div className="bg-yellow-300 rounded text-center">You are offline, you are being served cached content</div>
+        <div className="bg-yellow-300 rounded text-center">
+          You are offline, you are being served cached content
+        </div>
       </Offline>
 
       <div className="App bg-blue-700">
@@ -93,6 +99,17 @@ function App() {
           )}
           {ctx.isLoggedIn && (
             <Route path="/admin" element={<AdminPage />}></Route>
+          )}
+
+          
+          {ctx.isLoggedIn && (
+            <Route path="/chat" element={<ChatPage />}></Route>
+          )}
+          {ctx.isLoggedIn && (
+            <Route path="/map" element={<MapPage />}></Route>
+          )}
+          {!ctx.isLoggedIn && (
+            <Route path="/map" element={<Login />}></Route>
           )}
 
           <Route path="/events" element={eventsPage}></Route>

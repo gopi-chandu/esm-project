@@ -1,5 +1,5 @@
-var CACHE_STATIC_NAME = "static-v2";
-var CACHE_DYNAMIC_NAME = "dynamic-v2";
+var CACHE_STATIC_NAME = "static-v1";
+var CACHE_DYNAMIC_NAME = "dynamic-v1";
 const offlineCache = "./offline.html";
 
 self.addEventListener("install", function (event) {
@@ -61,26 +61,26 @@ self.addEventListener("fetch", function (event) {
     fetch(event.request)
       .then(function (res) {
         return caches.open(CACHE_DYNAMIC_NAME).then(function (cache) {
-          // trimCache(CACHE_DYNAMIC_NAME, 10);
+          trimCache(CACHE_DYNAMIC_NAME, 30);
           cache.put(event.request.url, res.clone());
 
           return res;
         });
       })
       .catch(function (err) {
-        console.log("eve req111 : ", event.request);
-        console.log("ERROR no Internet", err);
-        console.log(event.request.url);
+        // console.log("eve req111 : ", event.request);
+        // console.log("ERROR no Internet", err);
+        // console.log(event.request.url);
         return caches.match(event.request).then(function (response) {
           if (response) {
-            console.log("Response found");
+            // console.log("Response found");
             return response;
           } else {
             // not found in cache
             console.log(
               "~~~~~~~~~~~~~Go to this route~~~~~~~~~~~~~~~~~~~~~~~~~"
             );
-            console.log("eve req : ", event.request);
+            // console.log("eve req : ", event.request);
             // return caches.match("/");
             // return caches.open(CACHE_STATIC_NAME).then((cache) => {
             //   cache.matchAll("/").then((responses) => {
