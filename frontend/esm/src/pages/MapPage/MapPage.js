@@ -62,7 +62,7 @@ const MapPage = () => {
     );
   });
   return (
-    <div className="mapApp bg-red-300">
+    <div className="mapApp bg-red-300 ">
       <div className="mb-3 h-40">
         <MapContainer center={position} minZoom={2} zoom={4} maxZoom={4}>
           <TileLayer attribution={map_att} url={offlineUrl} />
