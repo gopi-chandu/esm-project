@@ -108,10 +108,7 @@ function App() {
             <Route
               path="/map"
               element={
-                <div className="flex flex-col">
-                  <BottomBar></BottomBar>
-                  <MapPage></MapPage>
-                </div>
+                <MapPage></MapPage>
               }
             ></Route>
           )}

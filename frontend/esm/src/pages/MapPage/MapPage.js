@@ -204,11 +204,14 @@ const MapPage = () => {
   });
   return (
     <div className="mapApp bg-red-300">
-      <MapContainer center={position} minZoom={2} zoom={4} maxZoom={4}>
-        <TileLayer attribution={map_att} url={offlineUrl} />
-        {content}
-        {/* <LocationFinderDummy /> */}
-      </MapContainer>
+      <div className="mb-3 h-40">
+        <MapContainer center={position} minZoom={2} zoom={4} maxZoom={4}>
+          <TileLayer attribution={map_att} url={offlineUrl} />
+          {content}
+          {/* <LocationFinderDummy /> */}
+        </MapContainer>
+      </div>
+      
       <BottomBar></BottomBar>
     </div>
   );
