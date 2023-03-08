@@ -16,6 +16,7 @@ import iconMarker from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import L from "leaflet";
+import BottomBar from "../../components/bars/BottomBar";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: iconRetina,
@@ -202,12 +203,13 @@ const MapPage = () => {
     );
   });
   return (
-    <div className="mapApp">
+    <div className="mapApp bg-red-300">
       <MapContainer center={position} minZoom={2} zoom={4} maxZoom={4}>
         <TileLayer attribution={map_att} url={offlineUrl} />
         {content}
-        <LocationFinderDummy />
+        {/* <LocationFinderDummy /> */}
       </MapContainer>
+      <BottomBar></BottomBar>
     </div>
   );
 };

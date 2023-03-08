@@ -24,9 +24,9 @@ import ProfileForm from "./pages/profilepage/ProfileForm";
 // Admin Page
 import AdminDashboard from "./pages/AdminPages/AdminDashboard";
 
-// Chat Page 
+// Chat Page
 import ChatPage from "./pages/ChatPages/ChatPage";
-// Map Page 
+// Map Page
 import MapPage from "./pages/MapPage/MapPage";
 
 // State management context API
@@ -101,16 +101,21 @@ function App() {
             <Route path="/admin" element={<AdminPage />}></Route>
           )}
 
-          
           {ctx.isLoggedIn && (
             <Route path="/chat" element={<ChatPage />}></Route>
           )}
           {ctx.isLoggedIn && (
-            <Route path="/map" element={<MapPage />}></Route>
+            <Route
+              path="/map"
+              element={
+                <div className="flex flex-col">
+                  <BottomBar></BottomBar>
+                  <MapPage></MapPage>
+                </div>
+              }
+            ></Route>
           )}
-          {!ctx.isLoggedIn && (
-            <Route path="/map" element={<Login />}></Route>
-          )}
+          {!ctx.isLoggedIn && <Route path="/map" element={<Login />}></Route>}
 
           <Route path="/events" element={eventsPage}></Route>
 
