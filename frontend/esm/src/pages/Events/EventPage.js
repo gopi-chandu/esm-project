@@ -103,7 +103,7 @@ const EventPage = () => {
               Entry fee
             </p>
             <p className="mt-1">
-              {"$ "}
+              {"Rs "}
               {eventData?.entryFee}
             </p>
           </div>

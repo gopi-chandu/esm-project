@@ -16,8 +16,9 @@ const SideBar = () => {
     { title: "Home", src: "Chart_fill", to: "/" },
     { title: "Events", src: "Chat", to: "/events" },
     { title: "Chat", src: "Chat", to: "/chat" },
-    { title: "Q&A", src: "Chat", to: "/qna" },
-    { title: "Articles", src: "Chat", to: "/articles" },
+    { title: "Map", src: "Chat", to: "/map" },
+    // { title: "Q&A", src: "Chat", to: "/qna" },
+    // { title: "Articles", src: "Chat", to: "/articles" },
     { title: "About", src: "Chat", to: "/about" },
     // { title: "Accounts", src: "User", gap: true },
   ];
