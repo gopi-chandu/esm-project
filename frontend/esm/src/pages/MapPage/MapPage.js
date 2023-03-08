@@ -37,6 +37,11 @@ const MapPage = () => {
       lat: -37.261297317748955,
       lng: -8.443357709116086,
     },
+    {
+      name: "cv raman",
+      lat: -24.860067562401763,
+      lng: 21.972656250000004,
+    },
   ]);
   const LocationFinderDummy = () => {
     const map = useMapEvents({

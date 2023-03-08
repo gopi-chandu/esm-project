@@ -4,6 +4,7 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import Home from "@mui/icons-material/Home";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import QuestionAnswer from "@mui/icons-material/QuestionAnswer";
+import Map from "@mui/icons-material/Map";
 import ChatBubble from "@mui/icons-material/ChatBubble";
 import { NavLink } from "react-router-dom";
 
@@ -39,11 +40,17 @@ const BottomBar = () => {
           to="/chat"
         />
         <BottomNavigationAction
+          label="Map"
+          icon={< Map/>}
+          component={NavLink}
+          to="/map"
+        />
+        {/* <BottomNavigationAction
           label="QnA"
           icon={<QuestionAnswer />}
           component={NavLink}
           to="/qna"
-        />
+        /> */}
         <BottomNavigationAction
           label="Profile"
           icon={<AccountCircle />}
