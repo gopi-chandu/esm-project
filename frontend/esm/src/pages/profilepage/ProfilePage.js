@@ -71,7 +71,7 @@ const ProfilePage = () => {
           <img style={mystyle}
             className="w-80 mx-auto my-auto object-cover"
             // src="http://localhost:5000/uploads/events/no-event.jpg"
-            src="http://localhost:5000/uploads/profile/no-photo.jpg"
+            src={`${configData.SERVER_URL}/uploads/profile/no-photo.jpg`}
             // src={`${configData.SERVER_URL}/uploads/profile/` + userData.photo}
             alt="image"
           ></img>

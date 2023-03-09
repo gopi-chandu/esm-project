@@ -64,7 +64,7 @@ const EventPage = () => {
   // e = e[0];
   // console.log(e);
   let url =
-    "http://localhost:5000/uploads/events/no-event.jpg";
+    `${configData.SERVER_URL}/uploads/events/no-event.jpg`;
 
   return (
     <div className="w-full h-full ">
