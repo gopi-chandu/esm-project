@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useContext, useState } from "react";
-import { Offline, Online } from "react-detect-offline";
+// import { Offline, Online } from "react-detect-offline";
 import "./App.css";
 // common page
 import SideBar from "./components/bars/SideBar";
@@ -20,7 +20,7 @@ import OfflinePage from "./pages/offlinepages/OfflinePage";
 // User Pages
 import ProfilePage from "./pages/profilepage/ProfilePage";
 import ProfileForm from "./pages/profilepage/ProfileForm";
-
+import { flash } from "react-universal-flash";
 // Admin Page
 import AdminDashboard from "./pages/AdminPages/AdminDashboard";
 
@@ -31,8 +31,12 @@ import MapPage from "./pages/MapPage/MapPage";
 
 // State management context API
 import AuthContext from "./store/auth-context";
-import AdminPage from "./pages/Admin/AdminPage";
+// import AdminPage from "./pages/AdminObnselete/AdminPage";
 import LoadingAnimation from "./components/UI/LoadingAnimation";
+import {Flasher} from "react-universal-flash";
+import { RenderFlash } from "react-universal-flash";
+import Message from "./components/UI/Message";
+import UserRegPage from "./pages/UserRegPage/UserRegPage";
 function App() {
   const ctx = useContext(AuthContext);
   let eventsPage = <Login></Login>;
@@ -59,12 +63,16 @@ function App() {
 
   return (
     <div>
-      <Offline>
+      {/* <Offline>
         <div className="bg-yellow-300 rounded text-center">
           You are offline, you are being served cached content
         </div>
-      </Offline>
-
+      </Offline> */}
+      <Flasher position="top_left">
+        <Message></Message>
+      </Flasher>
+      {/* <div onClick={() => flash(1000,"error","Try again")}>Error</div>
+      <div onClick={() => flash(1000, "success", "Congrats")}>Success</div> */}
       <div className="App bg-blue-700">
         <Routes>
           {!ctx.isLoggedIn && (
@@ -98,19 +106,14 @@ function App() {
             <Route path="/profile" element={profilePage}></Route>
           )}
           {ctx.isLoggedIn && (
-            <Route path="/admin" element={<AdminPage />}></Route>
+            <Route path="/admin" element={<AdminDashboard />}></Route>
           )}
 
           {ctx.isLoggedIn && (
             <Route path="/chat" element={<ChatPage />}></Route>
           )}
           {ctx.isLoggedIn && (
-            <Route
-              path="/map"
-              element={
-                <MapPage></MapPage>
-              }
-            ></Route>
+            <Route path="/map" element={<MapPage></MapPage>}></Route>
           )}
           {!ctx.isLoggedIn && <Route path="/map" element={<Login />}></Route>}
 
@@ -125,6 +128,18 @@ function App() {
                 <div className="flex">
                   <SideBar></SideBar>
                   <EventPage></EventPage>
+                  <BottomBar></BottomBar>
+                </div>
+              }
+            ></Route>
+          )}
+          {ctx.isLoggedIn && (
+            <Route
+              path="/events/:eventId/register"
+              element={
+                <div className="flex">
+                  <SideBar></SideBar>
+                  <UserRegPage></UserRegPage>
                   <BottomBar></BottomBar>
                 </div>
               }

@@ -4,7 +4,9 @@ import { Navigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
+import * as EmailValidator from "email-validator";
 
+import { flash } from "react-universal-flash";
 // Assets
 import bg from "../../assets/images/bg.jpg";
 
@@ -25,6 +27,16 @@ const Login = () => {
       email: enteredEmail,
       password: enteredPassword,
     };
+
+    if (!EmailValidator.validate(inputData.email)) {
+      flash(1000, "Error", "Email invalid");
+      console.log("Email invalid");
+      return;
+    }
+    // if (!(inputData.password.trim() === "")) {
+    //   flash(1000, "Error", "password length");
+    //   return;
+    // }
     console.log(inputData);
     let token = 123;
     axios
@@ -38,7 +50,10 @@ const Login = () => {
         navigate("/");
         console.log("data : ", data.data.token);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        flash(1000, "Error", "username/password is incorrect");
+      });
   };
   return (
     <React.Fragment>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 // temporary import
 import { data } from "../../assets/seed/data";
@@ -21,7 +21,7 @@ const EventPage = () => {
   useEffect(() => {
     //make api call , use the params to get the id
 
-    console.log("params :", params);
+    // console.log("params :", params);
     let userDetails;
     axios
       .get(`${configData.SERVER_URL}/api/v1/events/${params.eventId}`, {
@@ -31,24 +31,26 @@ const EventPage = () => {
         },
       })
       .then((data) => {
+        // console.log("DATA POSTED");
         let d = data.data.data;
+        // console.log("data ::::  ", d.club.title);
         ctx.setOffline(false);
         setEventData(d);
       })
       .catch((err) => {
         ctx.setOffline(true);
-        console.log("No internet connection", err);
+        // console.log("No internet connection", err);
         let data = localStorage.getItem("events");
         let arr = JSON.parse(data);
-        console.log("Arrr::::::",arr)
+        // console.log("Arrr::::::", arr);
         let f;
         for (let i = 0; i < arr.length; i++) {
           if (arr[i]._id === params.eventId) {
-            console.log("Array number found");
+            // console.log("Array number found");
             f = arr[i];
           }
         }
-        console.log("F data ", f);
+        // console.log("F data ", f);
         setEventData(f);
       });
     // remove time out just before deploying
@@ -63,14 +65,13 @@ const EventPage = () => {
   // let e = data.filter((e) => e.id == params.eventId);
   // e = e[0];
   // console.log(e);
-  let url =
-    `${configData.SERVER_URL}/uploads/events/no-event.jpg`;
-
+  let url = `${configData.SERVER_URL}/uploads/events/no-event.jpg`;
+  let regUrl=`/events/${eventData?._id}/register`;
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full  ">
       <p className="text-3xl p-3 underline text-white">{eventData?.title}</p>
 
-      <div className="h-screen flex flex-col items-center md:flex-row justify-center gap-x-10 bg-blue-400 md:items-start items-start p-4 justify-center">
+      <div className="h-fit mb-10 flex flex-col items-center md:flex-row justify-center gap-x-10 bg-blue-400 md:items-start items-start p-4 justify-center">
         {/* left */}
         <div className="scale-110">
           <img
@@ -79,12 +80,18 @@ const EventPage = () => {
           ></img>
         </div>
 
-        <div className="h-fit w-fit mx-20 md:mx-0 md:h-80 bg-blue-300 rounded-lg mt-4 p-3">
+        <div className="h-fit w-fit mx-20 md:mx-0 bg-blue-300 rounded-lg mt-4 p-3 mb-10">
           {/* right */}
 
           <div className="flex flex-row gap-2 ">
             <p className="bg-white font-semibold p-1 m-1 ml-2 mb-0 rounded text-xl "></p>
             <p className="mt-1 text-2xl font-semibold">{eventData?.title}</p>
+          </div>
+          <div className="flex flex-col gap-2 justify-between ">
+            <p className="font-semibold bg-white w-fit  p-1 m-2 mt-4 rounded  mb-0 ">
+              Club{" "}
+            </p>
+            <p className="ml-2 text-left">{eventData?.club?.title}</p>
           </div>
           <div className="flex flex-col gap-2 justify-between ">
             <p className="font-semibold bg-white w-fit  p-1 m-2 mt-4 rounded  mb-0 ">
@@ -107,9 +114,11 @@ const EventPage = () => {
               {eventData?.entryFee}
             </p>
           </div>
-          <div className="w-40 ml-auto mr-0 text-left m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 pl-4 bg-green-300 rounded rounded-lg shadow shadow-md">
-            <p className="font-semibold">Register Now !!!</p>
-          </div>
+          <NavLink to={regUrl}>
+            <div className="w-40 ml-auto mr-0 text-left m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 pl-4 bg-green-300 rounded rounded-lg shadow shadow-md">
+              <p className="font-semibold">Register Now !!!</p>
+            </div>
+          </NavLink>
         </div>
       </div>
     </div>

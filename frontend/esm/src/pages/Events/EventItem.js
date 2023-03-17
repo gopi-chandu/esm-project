@@ -18,11 +18,12 @@ const EventItem = (props) => {
             {/* bottom content */}
             <div className="p-2 text-left m-3 ">
               <p className="text-xl font-bold">{e?.title}</p>
-              <div className="h-40">
+              <p className="text-md mt-1">Club: {e?.club.title}</p>
+              <div className="h-40 overflow-hidden">
                 <p className="text-md mt-1 ">{e?.description}</p>
               </div>
               <p className="text-md mt-1">Capacity : {e?.capacity}</p>
-              <p className="text-xl mt-1">Price : Rs{e?.entryFee}</p>
+              <p className="text-xl mt-1">Price : Rs {e?.entryFee}</p>
             </div>
             <div className="text-right m-4">
               <p className="w-full p-2 text-sm font-semibold text-center text-white transition duration-100 rounded-md md: text-lg bg-gradient-to-r from-blue-600 to-blue-400 focus: outline-none focus:ring-2 focus:ring-blue-300 hover:shadow-lg">

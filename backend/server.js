@@ -8,7 +8,7 @@ const connectDB = require("./config/db"); // loading database connect function
 const errorHandler = require("./middlewares/error");
 var cookieParser = require("cookie-parser");
 const fileupload = require("express-fileupload");
-
+const bodyParser = require('body-parser');
 // Loading env files
 dotenv.config({ path: "./config/config.env" });
 
@@ -16,7 +16,7 @@ const app = express();
 // for socket io
 const server = http.createServer(app);
 const io = socketio(server);
-
+app.use(bodyParser.json()); 
 //connect to database
 connectDB();
 

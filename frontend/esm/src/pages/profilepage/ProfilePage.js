@@ -7,6 +7,24 @@ import ProfileForm from "./ProfileForm";
 
 //Configs
 import configData from "../../config.json";
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
+import AttachFileOutlined from "@mui/icons-material/AttachFileOutlined";
+import { Box, style } from "@mui/system";
+const styles = (theme) => ({
+  textField: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    paddingBottom: 0,
+    marginTop: 0,
+    width: 30,
+    fontWeight: 200,
+  },
+  input: {
+    color: "white",
+  },
+});
 
 const ProfilePage = () => {
   //States
@@ -25,7 +43,7 @@ const ProfilePage = () => {
   const ctx = useContext(AuthContext);
 
   // get the user data and store it here
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState({});
   useEffect(() => {
     //make api call , use token get the profile
     // display it
@@ -39,28 +57,28 @@ const ProfilePage = () => {
         },
       })
       .then((data) => {
-        console.log("data123 : ", userData);
         let d = data.data.data;
         d.photo = d.photo.trim();
         ctx.setOffline(false);
         setUserData(d);
+        // console.log("data123 : ", d);
         // remove time out just before deploying
         setTimeout(() => {
           setIsLoading(false);
 
-          console.log("data : ", userData);
+          // console.log("data : ", userData);
         }, 500);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         ctx.setOffline(true);
       });
   }, []);
-  let mystyle={
+  let mystyle = {
     width: "100%",
-    height: "100%", 
+    height: "100%",
     // object-fit: "contain"
-};
+  };
   // profile content
   let profileContent = (
     <div className="w-full h-full bg-grey-300">
@@ -68,16 +86,18 @@ const ProfilePage = () => {
 
       <div className="flex flex-col items-center md:items-start md:flex-row justify-center gap-x-10">
         <div className=" mt-3 h-80 w-80 bg-white rounded-lg overflow-hidden items-center justify-center  ">
-          <img style={mystyle}
+          <img
+            style={mystyle}
             className="w-80 mx-auto my-auto object-cover"
             // src="http://localhost:5000/uploads/events/no-event.jpg"
-            src={`${configData.SERVER_URL}/uploads/profile/no-photo.jpg`}
+            src={`${configData.SERVER_URL}/uploads/profile/${userData.photo}`}
             // src={`${configData.SERVER_URL}/uploads/profile/` + userData.photo}
             alt="image"
           ></img>
         </div>
 
         <div className="h-fit md:w-96 md:h-80 bg-blue-300 rounded-lg mt-4 p-3 mb-40">
+          
           <ProfileForm user={userData}></ProfileForm>
         </div>
       </div>

@@ -9,11 +9,19 @@ const {
 } = require("../controllers/event");
 const advancedResults = require("../middlewares/advancedResults");
 const Event = require("../models/Event");
+const Club = require("../models/Club");
 
 const router = express.Router();
 
 router.put("/:eventId/photo", eventUploadPhoto); // photo upload
-router.get("/", advancedResults(Event), getEvents);
+router.get(
+  "/",
+  advancedResults(Event, {
+    path: "club",
+    select: "title description",
+  }),
+  getEvents
+);
 router.get("/:eventId", getEvent);
 router.post("/", createEvent);
 router.put("/:eventId", updateEvent);

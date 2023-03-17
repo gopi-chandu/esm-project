@@ -21,7 +21,7 @@ self.addEventListener("activate", function (event) {
       return Promise.all(
         keyList.map((key) => {
           if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
-            console.log("[Service Worker] removing old cache", key);
+            // console.log("[Service Worker] removing old cache", key);
             return caches.delete(key);
           }
         })
@@ -77,9 +77,9 @@ self.addEventListener("fetch", function (event) {
             return response;
           } else {
             // not found in cache
-            console.log(
-              "~~~~~~~~~~~~~Go to this route~~~~~~~~~~~~~~~~~~~~~~~~~"
-            );
+            // console.log(
+            //   "~~~~~~~~~~~~~Go to this route~~~~~~~~~~~~~~~~~~~~~~~~~"
+            // );
             // console.log("eve req : ", event.request);
             // return caches.match("/");
             // return caches.open(CACHE_STATIC_NAME).then((cache) => {

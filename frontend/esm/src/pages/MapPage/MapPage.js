@@ -70,7 +70,6 @@ const MapPage = () => {
           {/* <LocationFinderDummy /> */}
         </MapContainer>
       </div>
-      
       <BottomBar></BottomBar>
     </div>
   );

@@ -1,5 +1,6 @@
 // React Imports
 import React from "react";
+import * as EmailValidator from "email-validator";
 import { Navigate, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
@@ -13,9 +14,32 @@ import bg from "../../assets/images/bg.jpg";
 import AuthContext from "../../store/auth-context";
 import { useContext } from "react";
 
-
 //Configs
 import configData from "../../config.json";
+
+import { flash } from "react-universal-flash";
+var passwordValidator = require("password-validator");
+// Create a schema
+var schema = new passwordValidator();
+
+// Add properties to it
+schema
+  .is()
+  .min(8) // Minimum length 8
+  .is()
+  .max(100) // Maximum length 100
+  .has()
+  .uppercase() // Must have uppercase letters
+  .has()
+  .lowercase() // Must have lowercase letters
+  .has()
+  .digits(2) // Must have at least 2 digits
+  .has()
+  .not()
+  .spaces() // Should not have spaces
+  .is()
+  .not()
+  .oneOf(["Passw0rd", "Password123"]); // Blacklist these values
 
 const SignUp = () => {
   const nameRef = useRef();
@@ -35,7 +59,21 @@ const SignUp = () => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
-
+    // Check for email
+    if (!EmailValidator.validate(user.email)) {
+      flash(1000, "Error", "Email invalid");
+      console.log("Email invalid");
+      return;
+    }
+    if (!schema.validate(user.password)) {
+      flash(
+        6000,
+        "Error",
+        "Password invalid, doesnot not match the password guidelines OneCaptial,oneSmall,oneLetter, one Specialchar"
+      );
+      console.log("Password invalid");
+      return;
+    }
     axios
       .post(`${configData.SERVER_URL}/api/v1/auth/register`, user, {
         headers: {

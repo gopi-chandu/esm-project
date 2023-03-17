@@ -1,30 +1,118 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import TextInputUI from "./TextInputUI";
+import TextField from "@mui/material/TextField";
+import axios from "axios";
+import configData from "../../config.json";
+import AuthContext from "../../store/auth-context";
 
 const ProfileForm = (props) => {
   let club = props?.user?.club?.title;
-  console.log(club);
+  // console.log(club);
   const nameRef = useRef();
+  const photoRef = useRef();
   const [edit, setEdit] = useState(false);
+  const [photo, setPhoto] = useState("");
 
+  const [file, setFile] = useState("");
+  
+  const ctx = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     if (edit === true) {
       // post the request
+      if (!(photo === "")) {
+        console.log("post image");
+
+        console.log(file);
+        let formData = new FormData();
+        formData.append("file", file);
+
+        axios
+          .post(`${configData.SERVER_URL}/api/v1/auth/photo`, formData, {
+            headers: {
+              "x-device-id": "stuff",
+              "Content-Type": "multipart/form-data",
+              Authorization: "Bearer " + ctx.token,
+            },
+          })
+          .then((data) => {
+            console.log("Successfully posted ... ", data);
+            window.location.reload(false);
+          })
+          .catch((err) => console.log(err.response.data));
+      }
+      // post changed name
+      if (!(nameRef.current.value === props.user.name)) {
+        console.log("update username put");
+        let data = {
+          name: nameRef.current.value,
+        };
+        axios
+          .put(
+            `${configData.SERVER_URL}/api/v1/users/${props.user._id}`,
+            data,
+            {
+              headers: {
+                "Content-Type": "'multipart/form-data'",
+              },
+            }
+          )
+          .then((data) => {
+            console.log("Successfully posted ... ");
+          })
+          .catch((err) => console.log(err));
+      }
+
+      //set image , update fields
     }
-    console.log(nameRef.current.value);
+    // console.log(nameRef.current.value);
     setEdit(false);
   };
   const editHandler = (event) => {
     event.preventDefault();
     setEdit(!edit);
-    console.log(edit);
+    // console.log(edit);
+  };
+
+  const handleUploadInput = (e) => {
+    setPhoto(e.target.value);
+    setFile(e.target.files[0]);
+    console.log(e.target.files);
   };
   return (
     <form onSubmit={handleSubmit}>
       <button className={editClass} onClick={editHandler}>
         Edit
       </button>
+      <div hidden={!edit} className="">
+        <TextField
+          size="small"
+          sx={{
+            width: 200,
+            scale: 50,
+          }}
+          value={photo}
+          label="upload profile picture"
+          InputLabelProps={{
+            height: 20,
+          }}
+          // sx={{ m: 1, width: "25ch" }}
+          InputProps={{
+            fullWidth: true,
+            startAdornment: (
+              <input
+                ref={photoRef}
+                className="scale-100 "
+                type="file"
+                // hidden
+                onChange={handleUploadInput}
+                name="[name]"
+              />
+            ),
+          }}
+        />
+      </div>
+
       <TextInputUI
         label="Name"
         sendRef={nameRef}
@@ -48,7 +136,6 @@ const ProfileForm = (props) => {
       <button className={btnClass} type="submit">
         Update
       </button>
-
     </form>
   );
 };

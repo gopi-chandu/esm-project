@@ -87,7 +87,7 @@ const EventsList = () => {
 
   return (
     <React.Fragment>
-      <div className=" md:text-left text-center bg-red-300  h-30 p-2 text-3xl bg-blue-500 shadow shadow-lg">
+      <div className=" md:text-left text-center   h-30 p-2 text-3xl bg-blue-500 shadow shadow-lg">
         <div className=" flex flex-col md:flex-row md:justify-between justify-center items-center ">
           <p className="w-40 mx-auto bg-white p-2 rounded rounded-lg mb-3 ">
             Events List

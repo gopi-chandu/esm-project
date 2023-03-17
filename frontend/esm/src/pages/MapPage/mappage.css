@@ -16,7 +16,7 @@
 @media (min-height: 680px), screen and (orientation: portrait) {
   .leaflet-container {
     width: 100%;
-    height: 80vh;
+    height: 92vh;
   }
 }
 

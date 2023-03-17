@@ -13,7 +13,7 @@ module.exports.getEvents = asyncHandler(async (req, res, next) => {
 // @access Public
 module.exports.getEvent = asyncHandler(async (req, res, next) => {
   // console.log(req.params.eventId);
-  const event = await Event.findById(req.params.eventId);
+  const event = await Event.findById(req.params.eventId).populate({path:"club"});
   // console.log(event);
   if (!event) {
     return res.status(200).json({ success: false, data: {} });
@@ -66,12 +66,13 @@ module.exports.deleteEvent = asyncHandler(async (req, res, next) => {
 // @access Private
 module.exports.eventUploadPhoto = asyncHandler(async (req, res, next) => {
   const event = await Event.findById(req.params.eventId);
+  
   if (!event) {
     return next(
       new ErrorResponse(`event is not found with id of ${req.params.id}`, 404)
     );
   }
-
+ 
   if (!req.files) {
     return next(new ErrorResponse(`Please upload a file`, 400));
   }
@@ -96,7 +97,7 @@ module.exports.eventUploadPhoto = asyncHandler(async (req, res, next) => {
   // Create custom filename
   // we use path module to get the file extension , path.parse file and get extension
   file.name = `photo_${event._id}${path.parse(file.name).ext}`;
-  console.log(file.name);
+  // console.log(file.name);
   // upload the file, mv is inbuilt fn from express file upload
   file.mv(`${process.env.FILE_UPLOAD_PATH}/events/${file.name}`, async (err) => {
     if (err) {
@@ -105,7 +106,8 @@ module.exports.eventUploadPhoto = asyncHandler(async (req, res, next) => {
     }
 
     // insert filename into database
-    await Event.findByIdAndUpdate(req.params.id, { photo: file.name });
+    let ev2=await Event.findByIdAndUpdate(event._id, { photo: file.name });
+    // console.log(ev2)
     res.status(200).json({ success: true, data: file.name });
   });
 });

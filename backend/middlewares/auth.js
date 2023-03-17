@@ -5,7 +5,6 @@ const asyncHandler = require("./async");
 
 // create a middleware to make sure the user is logged in
 module.exports.protect = asyncHandler(async (req, res, next) => {
-  // console.log("req user", req.headers.authorization);
   let token;
   if (
     req.headers.authorization &&

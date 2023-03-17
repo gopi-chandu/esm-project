@@ -1,6 +1,8 @@
 const User = require("../models/User");
+const path = require("path");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middlewares/async");
+
 // @desc Register User
 // @route POST /api/v1/auth/register
 // @access Public
@@ -67,3 +69,52 @@ const sendTokenResponse = (user, statusCode, res) => {
     .cookie("token", token, options)
     .json({ success: true, token: token });
 };
+
+
+// @desc Upload a photo for event
+// @route PUT /api/v1/auth/photo
+// @access Private
+module.exports.profileUploadPhoto = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user._id);
+  if (!user) {
+    return next(
+      new ErrorResponse(`user is not found with id of ${req.user._id}`, 404)
+    );
+  }
+
+  if (!req.files) {
+    return next(new ErrorResponse(`Please upload a file`, 400));
+  }
+
+  const file = req.files.file;
+  // console.log(req.files.file)
+  // make sure the image is a photo
+  if (!file.mimetype.startsWith("image")) {
+    return next(new ErrorResponse(`Please upload an Image file`, 400));
+  }
+  //check file size
+  if (file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(
+      new ErrorResponse(
+        `Please upload an Image less than ${process.env.MAX_FILE_UPLOAD}`,
+        400
+      )
+    );
+  }
+  // Create custom filename
+  // we use path module to get the file extension , path.parse file and get extension
+  file.name = `photo_${user._id}${path.parse(file.name).ext}`;
+  console.log(file.name)
+  // upload the file, mv is inbuilt fn from express file upload
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/profile/${file.name}`, async (err) => {
+    if (err) {
+      console.log(err);
+      return next(new ErrorResponse(`Problem with file upload`, 500));
+    }
+
+    // insert filename into database
+    await User.findByIdAndUpdate(user._id, { photo: file.name });
+    res.status(200).json({ success: true, data: file.name });
+  });
+});
+
