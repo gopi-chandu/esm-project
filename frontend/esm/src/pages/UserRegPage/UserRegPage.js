@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 const UserRegPage = () => {
   let params = useParams();
   let eventId = params.eventId;
-  console.log(params);
+  // console.log(params);
 
   const ctx = useContext(AuthContext);
   const [eventData, setEventData] = useState("");
@@ -72,28 +72,23 @@ const UserRegPage = () => {
       flash(1000, "error", "phone number length too short");
       return;
     }
+    reg.eventId = eventData._id;
     console.log(reg);
-
     //POST REQUEST
-    // axios
-    //   .post(`${configData.SERVER_URL}/api/v1/regEvent/`, event, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: "Bearer " + ctx.token,
-    //     },
-    //   })
-    //   .then((data) => {
-    //     let d = data.data.data;
-    //     // props.changeOye();
-    //     if (d) {
-    //       console.log(d);
-    //     }
-    //     // ctx.setOffline(false);
-    //   })
-    //   .catch((err) => {
-    //     // ctx.setOffline(true);
-    //     console.log("No internet connection", err);
-    //   });
+    axios
+      .post(`${configData.SERVER_URL}/api/v1/eventRegister`, reg, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + ctx.token,
+        },
+      })
+      .then((data) => {
+        let d = data.data.data;
+      })
+      .catch((err) => {
+        // ctx.setOffline(true);
+        console.log("No internet connection", err);
+      });
   };
 
   useState(() => {

@@ -18,6 +18,7 @@ const EventPage = () => {
   const ctx = useContext(AuthContext);
   let e;
   const [eventData, setEventData] = useState("");
+  const [registered, setRegistered] = useState(false);
   useEffect(() => {
     //make api call , use the params to get the id
 
@@ -62,11 +63,34 @@ const EventPage = () => {
     // })
   }, []);
 
+  // FOR REGISTER BUTTON -CHECKING
+  useEffect(() => {
+    let userDetails;
+    axios
+      .get(`${configData.SERVER_URL}/api/v1/eventRegister/${params.eventId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + ctx.token,
+        },
+      })
+      .then((data) => {
+        let d = data.data.data;
+        console.log("data", d);
+        if (d.length>0) {
+          setRegistered(true);
+        } else {
+          setRegistered(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   // let e = data.filter((e) => e.id == params.eventId);
   // e = e[0];
   // console.log(e);
   let url = `${configData.SERVER_URL}/uploads/events/no-event.jpg`;
-  let regUrl=`/events/${eventData?._id}/register`;
+  let regUrl = `/events/${eventData?._id}/register`;
   return (
     <div className="w-full h-full  ">
       <p className="text-3xl p-3 underline text-white">{eventData?.title}</p>
@@ -82,7 +106,6 @@ const EventPage = () => {
 
         <div className="h-fit w-fit mx-20 md:mx-0 bg-blue-300 rounded-lg mt-4 p-3 mb-10">
           {/* right */}
-
           <div className="flex flex-row gap-2 ">
             <p className="bg-white font-semibold p-1 m-1 ml-2 mb-0 rounded text-xl "></p>
             <p className="mt-1 text-2xl font-semibold">{eventData?.title}</p>
@@ -105,7 +128,7 @@ const EventPage = () => {
             </p>
             <p className="mt-1">{eventData?.capacity}</p>
           </div>
-          <div className="flex flex-row gap-2  mb-0 ">
+          {/* <div className="flex flex-row gap-2  mb-0 ">
             <p className="bg-white w-fit p-1 m-1 rounded font-semibold">
               Entry fee
             </p>
@@ -113,12 +136,19 @@ const EventPage = () => {
               {"Rs "}
               {eventData?.entryFee}
             </p>
-          </div>
-          <NavLink to={regUrl}>
-            <div className="w-40 ml-auto mr-0 text-left m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 pl-4 bg-green-300 rounded rounded-lg shadow shadow-md">
-              <p className="font-semibold">Register Now !!!</p>
+          </div> */}
+          {registered && (
+            <div className="w-40 ml-auto mr-0 text-left m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 pl-4 bg-yellow-300 rounded rounded-lg shadow shadow-md">
+              <p className="font-semibold">Already Registered</p>
             </div>
-          </NavLink>
+          )}
+          {!registered && (
+            <NavLink to={regUrl}>
+              <div className="w-40 ml-auto mr-0 text-left m-1 transform duration-500 hover:bg-green-400 hover:shadow-xl p-3 pl-4 bg-green-300 rounded rounded-lg shadow shadow-md">
+                <p className="font-semibold">Register Now !!!</p>
+              </div>
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

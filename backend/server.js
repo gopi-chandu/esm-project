@@ -40,12 +40,14 @@ const auth = require("./routes/auth");
 const user = require("./routes/user");
 const event = require("./routes/event");
 const club = require("./routes/club");
+const registerUser = require("./routes/registerUser");
 
 //use the routes
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/events", event);
 app.use("/api/v1/users", user);
 app.use("/api/v1/clubs", club);
+app.use("/api/v1/eventRegister", registerUser);
 
 // Error handler
 app.use(errorHandler);

@@ -56,20 +56,20 @@ const SideBar2 = () => {
       {/* List starts here */}
       <ul className="pt-6">
         {Menus.map((Menu, index) => (
-          <li
-            key={index}
-            className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+          <NavLink className="flex flex-row gap-x-2" to={Menu.to}>
+            <li
+              key={index}
+              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"} ${
-              index === 0 && "bg-light-white"
-            } `}
-          >
-            <NavLink className="flex flex-row gap-x-2" to={Menu.to}>
+                index === 0 && "bg-light-white"
+              } `}
+            >
               <img src={`/images/${Menu.src}.png`} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 {Menu.title}
               </span>
-            </NavLink>
-          </li>
+            </li>
+          </NavLink>
         ))}
       </ul>
       {/* logout */}

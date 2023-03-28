@@ -113,6 +113,6 @@ const ProfilePage = () => {
   );
 };
 const bgClass =
-  "h-full h-fit bg-gradient-to-r from-blue-500 to-blue-300 md:justify-center items-center opacity-100 ";
+  "pb-40 h-full h-fit bg-gradient-to-r from-blue-500 to-blue-300 md:justify-center items-center opacity-100 ";
 
 export default ProfilePage;
