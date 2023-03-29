@@ -2,6 +2,7 @@
 *node_modules/*
 # exclude CONFIG ENV FILE
 backend/config/config.env
+frontend/esm/build
 
 
 # Logs
