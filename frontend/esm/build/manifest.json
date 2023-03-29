@@ -1,45 +1,25 @@
 {
-  "short_name": "Events App",
-  "name": "Event Status and Management",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
-      "src": "/images/icons/48.png",
-      "type": "image/png",
-      "sizes": "48x48"
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     },
     {
-      "src": "/images/icons/72.png",
-      "type": "image/png",
-      "sizes": "72x72"
-    },
-    {
-      "src": "/images/icons/96.png",
-      "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "/images/icons/144.png",
-      "type": "image/png",
-      "sizes": "144x144"
-    },
-    {
-      "src": "/images/icons/192.png",
+      "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/images/icons/512.png",
+      "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
-  "scope": ".",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#fff",
-  "theme_color": "#3f51b5",
-  "description": "Testing the working the PWA.",
-  "dir": "ltr",
-  "lang": "en-US"
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

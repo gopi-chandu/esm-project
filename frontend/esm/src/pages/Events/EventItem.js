@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import AuthContext from "../../store/auth-context";
-import configData from "../../config.json";
 
 const EventItem = (props) => {
   let e = props.data;
-  const ctx = useContext(AuthContext);
+  const ctx=useContext(AuthContext);
   // console.log("e : ", e);
   return (
     <React.Fragment key={props.forKey}>
@@ -13,9 +12,7 @@ const EventItem = (props) => {
         <div className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col">
           <div className="w-full bg-blue-200">
             {/* <img src="https://images-na.ssl-images-amazon.com/images/S/pv-target-images/26a13d14dd8849a6d7ad2655cd9c270e91190387432e6ee139096da7bec65cd4._RI_V_TTW_.png"></img> */}
-            <img
-              src={`${configData.SERVER_URL}/uploads/events/no-event.jpg`}
-            ></img>
+            <img src="http://localhost:5000/uploads/events/no-event.jpg" ></img>
           </div>
           <div>
             {/* bottom content */}
