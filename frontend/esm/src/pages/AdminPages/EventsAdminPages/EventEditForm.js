@@ -28,7 +28,7 @@ const EventEditForm = (props) => {
   };
   if (value) {
     f = value;
-    console.log("f value: ",f)
+    console.log("f value: ", f);
   }
   const [event, setEvent] = useState({
     _id: f._id,
@@ -85,7 +85,7 @@ const EventEditForm = (props) => {
       flash(1000, "error", "Incorrect date range");
       return;
     }
-    event.club=value._id;
+    event.club = value._id;
     console.log(event);
 
     // POST REQUEST
@@ -121,64 +121,66 @@ const EventEditForm = (props) => {
     });
   };
 
-  
   return (
     <div>
       <Paper className="mt-10 w-5/6 md:w-1/2 mx-auto ">
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={props.events}
-          sx={{ width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Pick an event to edit" />
-          )}
-          // onChange={props.selected_event}
-          onChange={(event, newValue) => {
-            if (newValue === null) {
-              handleReset()
-              return;
-            }
-            setValue(newValue);
-            setEvent(newValue);
-            console.log("new value from drop dwn", newValue);
-            // props.selected_event(newValue);
-          }}
-        />
+        <div className="scale-75 md:scale-100">
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={props.events}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Pick an event to edit" />
+            )}
+            // onChange={props.selected_event}
+            onChange={(event, newValue) => {
+              if (newValue === null) {
+                handleReset();
+                return;
+              }
+              setValue(newValue);
+              setEvent(newValue);
+              console.log("new value from drop dwn", newValue);
+              // props.selected_event(newValue);
+            }}
+          />
+        </div>
       </Paper>
 
       <Paper className=" mx-auto flex flex-col px-20 gap-y-4 w-5/6 md:w-1/2">
         <h2 className="text-3xl mb-3 pt-3 ">Edit Event</h2>
-        <div className="hidden" >
-
-   
-        <TextField
-          variant="standard"
-          onChange={onIdChange}
-          value={event._id}
-          label={"id"} //optional
-        />
+        <div className="hidden">
+          <TextField
+            variant="standard"
+            onChange={onIdChange}
+            value={event._id}
+            label={"id"} //optional
+          />
         </div>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={props.clubs}
-          sx={{ width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Pick a Club" />
-          )}
-          // onChange={props.selected_event}
-          onChange={(event, newValue) => {
-            if (newValue === null) {
-              handleReset()
-              return;
-            }
-            setValue(newValue);
-            // setEvent({ ...event, club: newValue._id });
-            console.log("new value from drop dwn",newValue._id);
-            // props.selected_event(newValue);
-          }}
-        />
+        <div className="scale-75 md:scale-100">
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={props.clubs}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Pick a Club" />
+            )}
+            // onChange={props.selected_event}
+            onChange={(event, newValue) => {
+              if (newValue === null) {
+                handleReset();
+                return;
+              }
+              setValue(newValue);
+              // setEvent({ ...event, club: newValue._id });
+              console.log("new value from drop dwn", newValue._id);
+              // props.selected_event(newValue);
+            }}
+          />
+        </div>
+
         <TextField
           // fullWidth
           variant="standard"
@@ -193,7 +195,7 @@ const EventEditForm = (props) => {
           label={"Description"} //optional
         />
         <TextField
-        InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true }}
           type="number"
           variant="standard"
           onChange={onCapacityChange}
@@ -201,7 +203,7 @@ const EventEditForm = (props) => {
           label={"Capacity"}
         />
         <TextField
-        InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true }}
           type="number"
           variant="standard"
           onChange={onFeeChange}
