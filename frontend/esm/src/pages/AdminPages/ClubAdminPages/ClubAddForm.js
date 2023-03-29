@@ -45,6 +45,7 @@ const ClubAddForm = () => {
         let d = data.data.data;
         // props.changeOye();
         if (d) {
+          flash(1000, "success", "Successfully Added");
             console.log("POSTED CLUB")
           console.log(d);
         }
