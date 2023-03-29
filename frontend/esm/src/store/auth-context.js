@@ -11,7 +11,7 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
-  const [admin, setAdmin] = useState("user");
+  const [admin, setAdmin] = useState(false);
   const [offlineStatus, setOfflineStatus] = useState(false);
   const userIsLoggedIn = !!token; // if token is not empty then it returns true
 
@@ -21,6 +21,7 @@ export const AuthContextProvider = (props) => {
   };
   const changeAdmin = (role) => {
     setAdmin(role);
+    console.log("role",role)
     localStorage.setItem("admin", role);
   };
   const logoutHandler = () => {

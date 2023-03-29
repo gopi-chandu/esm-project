@@ -60,7 +60,12 @@ function App() {
       </div>
     );
   }
-
+  let admin=false;
+  let f = localStorage.getItem("admin")
+  if(f=="true"){
+    admin=true;
+  }
+  console.log("f -------->", f);
   return (
     <div>
       {/* <Offline>
@@ -71,6 +76,7 @@ function App() {
       <Flasher position="top_left">
         <Message></Message>
       </Flasher>
+
       {/* <div onClick={() => flash(1000,"error","Try again")}>Error</div>
       <div onClick={() => flash(1000, "success", "Congrats")}>Success</div> */}
       <div className="App bg-blue-700">
@@ -81,7 +87,7 @@ function App() {
           {!ctx.isLoggedIn && (
             <Route path="/" element={<Login></Login>}></Route>
           )}
-          {ctx.isLoggedIn && ctx.isAdmin && (
+          {ctx.isLoggedIn && admin && (
             <Route
               path="/admin"
               element={<AdminDashboard></AdminDashboard>}
