@@ -33,7 +33,7 @@ import MapPage from "./pages/MapPage/MapPage";
 import AuthContext from "./store/auth-context";
 // import AdminPage from "./pages/AdminObnselete/AdminPage";
 import LoadingAnimation from "./components/UI/LoadingAnimation";
-import {Flasher} from "react-universal-flash";
+import { Flasher } from "react-universal-flash";
 import { RenderFlash } from "react-universal-flash";
 import Message from "./components/UI/Message";
 import UserRegPage from "./pages/UserRegPage/UserRegPage";
@@ -81,7 +81,7 @@ function App() {
           {!ctx.isLoggedIn && (
             <Route path="/" element={<Login></Login>}></Route>
           )}
-          {ctx.isLoggedIn && (
+          {ctx.isLoggedIn && ctx.isAdmin && (
             <Route
               path="/admin"
               element={<AdminDashboard></AdminDashboard>}
@@ -105,9 +105,9 @@ function App() {
           {ctx.isLoggedIn && (
             <Route path="/profile" element={profilePage}></Route>
           )}
-          {ctx.isLoggedIn && (
+          {/* {ctx.isLoggedIn &&  ctx.isAdmin && (
             <Route path="/admin" element={<AdminDashboard />}></Route>
-          )}
+          )} */}
 
           {ctx.isLoggedIn && (
             <Route path="/chat" element={<ChatPage />}></Route>

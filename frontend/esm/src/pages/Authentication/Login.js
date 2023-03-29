@@ -46,8 +46,17 @@ const Login = () => {
         },
       })
       .then((data) => {
+        console.log("data", data.data);
         ctx.login(data.data.token);
-        navigate("/");
+        if (data.data.role == "user") {
+          console.log("He is a normal user");
+        }
+        if (data.data.role == "admin") {
+          console.log("He is an Admin");
+          ctx.changeAdmin(true);
+          console.log("data -----> : ", data.data.role);
+        }
+        // navigate("/");
         console.log("data : ", data.data.token);
       })
       .catch((err) => {
