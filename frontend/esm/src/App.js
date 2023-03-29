@@ -60,10 +60,19 @@ function App() {
       </div>
     );
   }
-  let admin=false;
-  let f = localStorage.getItem("admin")
-  if(f=="true"){
-    admin=true;
+  let adminContent = (
+    <div className="flex flex-row mx-auto">
+      <SideBar></SideBar>
+      <div className="w-full">
+        <AdminDashboard></AdminDashboard>
+      </div>
+      <BottomBar></BottomBar>
+    </div>
+  );
+  let admin = false;
+  let f = localStorage.getItem("admin");
+  if (f == "true") {
+    admin = true;
   }
   console.log("f -------->", f);
   return (
@@ -88,10 +97,7 @@ function App() {
             <Route path="/" element={<Login></Login>}></Route>
           )}
           {ctx.isLoggedIn && admin && (
-            <Route
-              path="/admin"
-              element={<AdminDashboard></AdminDashboard>}
-            ></Route>
+            <Route path="/admin" element={adminContent}></Route>
           )}
           {ctx.isLoggedIn && <Route path="/" element={eventsPage}></Route>}
           {!ctx.isLoggedIn && (
