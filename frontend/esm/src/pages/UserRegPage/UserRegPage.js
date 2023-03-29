@@ -8,7 +8,7 @@ import AuthContext from "../../store/auth-context";
 import configData from "../../config.json";
 import axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UserRegPage = () => {
   let params = useParams();
@@ -47,7 +47,7 @@ const UserRegPage = () => {
         console.log(err);
       });
   }, [params.eventId]);
-
+  const navigate = useNavigate();
   // Handle submi and reset
   const handleSubmit = () => {
     //Validate
@@ -84,6 +84,8 @@ const UserRegPage = () => {
       })
       .then((data) => {
         let d = data.data.data;
+        flash(1000, "success", "Successfully registered");
+        navigate(`/events`);
       })
       .catch((err) => {
         // ctx.setOffline(true);
