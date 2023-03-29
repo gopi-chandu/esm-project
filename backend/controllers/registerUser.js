@@ -50,12 +50,12 @@ module.exports.RegisterForEvent = asyncHandler(async (req, res, next) => {
   let user = req.user._id;
   let event = req.body.eventId;
 
-  console.log("User : ", user);
-  console.log("Event : ", event);
+  // console.log("User : ", user);
+  // console.log("Event : ", event);
 
   let regUser = await RegisterUser.findOne({ user: user, event: event });
   if (!regUser) {
-    console.log("regUser", regUser);
+    // console.log("regUser", regUser);
     let reg = await RegisterUser.create({
       user: user,
       event: event,
