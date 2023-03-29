@@ -90,6 +90,7 @@ const EventAddForm = (props) => {
         // props.changeOye();
         if (d) {
           console.log(d);
+          flash(1000, "success", "Successfully Added");
         }
         // ctx.setOffline(false);
       })

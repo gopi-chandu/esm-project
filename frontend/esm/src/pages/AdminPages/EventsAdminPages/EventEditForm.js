@@ -99,6 +99,7 @@ const EventEditForm = (props) => {
       .then((data) => {
         let d = data.data.data;
         if (d) {
+          flash(1000, "success", "Successfully Modified");
           console.log("data posted succesfully");
           console.log(d);
         }
