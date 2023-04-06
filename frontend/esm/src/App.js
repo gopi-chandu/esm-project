@@ -33,7 +33,7 @@ import MapPage from "./pages/MapPage/MapPage";
 import AuthContext from "./store/auth-context";
 // import AdminPage from "./pages/AdminObnselete/AdminPage";
 import LoadingAnimation from "./components/UI/LoadingAnimation";
-import {Flasher} from "react-universal-flash";
+import { Flasher } from "react-universal-flash";
 import { RenderFlash } from "react-universal-flash";
 import Message from "./components/UI/Message";
 import UserRegPage from "./pages/UserRegPage/UserRegPage";
@@ -110,7 +110,19 @@ function App() {
           )}
 
           {ctx.isLoggedIn && (
-            <Route path="/chat" element={<ChatPage />}></Route>
+            <Route
+              path="/chat"
+              element={
+                <div className="flex flex-col md:flex-row">
+                  <SideBar></SideBar>
+                  <div className="md:w-300">
+                  <ChatPage />
+                  </div>
+                  
+                  <BottomBar></BottomBar>
+                </div>
+              }
+            ></Route>
           )}
           {ctx.isLoggedIn && (
             <Route path="/map" element={<MapPage></MapPage>}></Route>
