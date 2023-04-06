@@ -11,6 +11,7 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
+  const [admin, setAdmin] = useState(false);
   const [offlineStatus, setOfflineStatus] = useState(false);
   const userIsLoggedIn = !!token; // if token is not empty then it returns true
 
@@ -18,9 +19,15 @@ export const AuthContextProvider = (props) => {
     setToken(token);
     localStorage.setItem("token", token);
   };
+  const changeAdmin = (role) => {
+    setAdmin(role);
+    console.log("role",role)
+    localStorage.setItem("admin", role);
+  };
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("admin");
   };
   const setOffline = (status) => {
     setOfflineStatus(status);
@@ -32,6 +39,8 @@ export const AuthContextProvider = (props) => {
     logout: logoutHandler,
     setOffline: setOffline,
     isOffline: offlineStatus,
+    isAdmin: admin,
+    changeAdmin: changeAdmin,
   };
   return (
     <AuthContext.Provider value={contextValue}>

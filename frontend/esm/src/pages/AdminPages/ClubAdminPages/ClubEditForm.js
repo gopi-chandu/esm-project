@@ -53,6 +53,7 @@ const ClubEditForm = (props) => {
       .then((data) => {
         let d = data.data.data;
         if (d) {
+          flash(1000, "success", "Successfully Modified");
           console.log("data posted succesfully");
           console.log(d);
         }
@@ -68,28 +69,29 @@ const ClubEditForm = (props) => {
     setClub({ ...club, description: e.target.value });
   return (
     <div>
-      {" "}
       <Paper className="mt-10 w-5/6 md:w-1/2 mx-auto ">
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={props.events}
-          sx={{ width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Pick an event to edit" />
-          )}
-          // onChange={props.selected_event}
-          onChange={(event, newValue) => {
-            if (newValue === null) {
-              handleReset();
-              return;
-            }
-            setValue(newValue);
-            setClub(newValue);
-            console.log("new value from drop dwn", newValue);
-            // props.selected_event(newValue);
-          }}
-        />
+        <div className="scale-75 md:scale-100">
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={props.events}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Pick an event to edit" />
+            )}
+            // onChange={props.selected_event}
+            onChange={(event, newValue) => {
+              if (newValue === null) {
+                handleReset();
+                return;
+              }
+              setValue(newValue);
+              setClub(newValue);
+              console.log("new value from drop dwn", newValue);
+              // props.selected_event(newValue);
+            }}
+          />
+        </div>
       </Paper>
       <Paper className="mx-auto flex flex-col px-20 gap-y-4 w-5/6 md:w-1/2">
         <h2 className="text-3xl mb-3 pt-3 ">Add club</h2>

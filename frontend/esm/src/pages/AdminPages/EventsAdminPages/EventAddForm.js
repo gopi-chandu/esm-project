@@ -5,12 +5,12 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import { flash } from "react-universal-flash";
 import AuthContext from "../../../store/auth-context";
-import configData from '../../../config.json'
+import configData from "../../../config.json";
 import axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
 
 const EventAddForm = (props) => {
-  console.log(props.clubs)
+  console.log(props.clubs);
   let n = props.clubs.length;
   for (let i = 0; i < n; i++) {
     props.clubs[i].label = props.clubs[i].title;
@@ -40,8 +40,8 @@ const EventAddForm = (props) => {
   // Handle submi and reset
   const handleSubmit = () => {
     //Validate
-    console.log("trying to submit...")
-    if (value=== "") {
+    console.log("trying to submit...");
+    if (value === "") {
       flash(1000, "error", "pick a club");
       return;
     }
@@ -74,7 +74,7 @@ const EventAddForm = (props) => {
       flash(1000, "error", "Incorrect date range");
       return;
     }
-    event.club=value._id;
+    event.club = value._id;
     console.log(event);
 
     //POST REQUEST
@@ -90,6 +90,7 @@ const EventAddForm = (props) => {
         // props.changeOye();
         if (d) {
           console.log(d);
+          flash(1000, "success", "Successfully Added");
         }
         // ctx.setOffline(false);
       })
@@ -107,12 +108,12 @@ const EventAddForm = (props) => {
       endDate: null,
       fee: "",
     });
-    
   };
   return (
     <Paper className="mx-auto flex flex-col px-20 gap-y-4 w-5/6 md:w-1/2">
       <h2 className="text-3xl mb-3 pt-3 ">Add Event</h2>
-      <Autocomplete
+      <div className="scale-75 md:scale-100">
+        <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={props.clubs}
@@ -123,13 +124,15 @@ const EventAddForm = (props) => {
           // onChange={props.selected_event}
           onChange={(event, newValue) => {
             if (newValue === null) {
-              handleReset()
+              handleReset();
               return;
             }
             setValue(newValue);
-            console.log("new value from drop dwn",newValue._id);
+            console.log("new value from drop dwn", newValue._id);
           }}
         />
+      </div>
+
       <TextField
         // fullWidth
         variant="standard"

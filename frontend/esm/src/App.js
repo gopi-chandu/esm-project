@@ -60,7 +60,21 @@ function App() {
       </div>
     );
   }
-
+  let adminContent = (
+    <div className="flex flex-row mx-auto">
+      <SideBar></SideBar>
+      <div className="w-full">
+        <AdminDashboard></AdminDashboard>
+      </div>
+      <BottomBar></BottomBar>
+    </div>
+  );
+  let admin = false;
+  let f = localStorage.getItem("admin");
+  if (f == "true") {
+    admin = true;
+  }
+  console.log("f -------->", f);
   return (
     <div>
       {/* <Offline>
@@ -71,6 +85,7 @@ function App() {
       <Flasher position="top_left">
         <Message></Message>
       </Flasher>
+
       {/* <div onClick={() => flash(1000,"error","Try again")}>Error</div>
       <div onClick={() => flash(1000, "success", "Congrats")}>Success</div> */}
       <div className="App bg-blue-700">
@@ -81,11 +96,8 @@ function App() {
           {!ctx.isLoggedIn && (
             <Route path="/" element={<Login></Login>}></Route>
           )}
-          {ctx.isLoggedIn && (
-            <Route
-              path="/admin"
-              element={<AdminDashboard></AdminDashboard>}
-            ></Route>
+          {ctx.isLoggedIn && admin && (
+            <Route path="/admin" element={adminContent}></Route>
           )}
           {ctx.isLoggedIn && <Route path="/" element={eventsPage}></Route>}
           {!ctx.isLoggedIn && (
@@ -105,9 +117,9 @@ function App() {
           {ctx.isLoggedIn && (
             <Route path="/profile" element={profilePage}></Route>
           )}
-          {ctx.isLoggedIn && (
+          {/* {ctx.isLoggedIn &&  ctx.isAdmin && (
             <Route path="/admin" element={<AdminDashboard />}></Route>
-          )}
+          )} */}
 
           {ctx.isLoggedIn && (
             <Route

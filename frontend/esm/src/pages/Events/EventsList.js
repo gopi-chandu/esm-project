@@ -17,16 +17,20 @@ const EventsList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   // let content=0;
-  let content = data.map((element, index) => {
-    let url = "/events/" + element._id;
-    return (
-      <li key={index} className="list-none">
-        <NavLink to={url}>
-          <EventItem data={element} forKey={index}></EventItem>
-        </NavLink>
-      </li>
-    );
-  });
+  let content = "";
+  if (data) {
+    console.log(data);
+    content = data.map((element, index) => {
+      let url = "/events/" + element._id;
+      return (
+        <li key={index} className="list-none">
+          <NavLink to={url}>
+            <EventItem data={element} forKey={index}></EventItem>
+          </NavLink>
+        </li>
+      );
+    });
+  }
 
   // Runs only when the component loads
   useEffect(() => {
@@ -38,7 +42,7 @@ const EventsList = () => {
       .get(`${configData.SERVER_URL}/api/v1/events/`)
       .then((data) => {
         ctx.setOffline(false);
-        // console.log(data.data.data);
+        console.log(data.data.data);
         setData(data.data.data);
         setTimeout(() => {
           setIsLoading(false);

@@ -39,9 +39,9 @@ const messageBarStyle = {
     
     let cl=(type === "green" || type === "success")?green:red;
     return (
-      <div key={id} class={cl} role="alert">
-      <p class="font-bold">{type}</p>
-      <p class="text-sm">{content}.</p>
+      <div key={id} className={cl} role="alert">
+      <p className="font-bold">{type}</p>
+      <p className="text-sm">{content}.</p>
     </div>
     );
   };
