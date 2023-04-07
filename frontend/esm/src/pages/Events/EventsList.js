@@ -44,7 +44,7 @@ const EventsList = () => {
         let f = [];
         let n = data.data.data.length;
         for (let i = 0; i < n; i++) {
-          if (g[i].title.toLowerCase().includes(input)) {
+          if (g[i].title.toLowerCase().includes(input.toLowerCase())) {
             f= [...f, g[i]];
           }
           console.log("Starts with :",f);

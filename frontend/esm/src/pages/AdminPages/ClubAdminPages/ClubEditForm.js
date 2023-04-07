@@ -77,7 +77,7 @@ const ClubEditForm = (props) => {
             options={props.events}
             sx={{ width: 300 }}
             renderInput={(params) => (
-              <TextField {...params} label="Pick an event to edit" />
+              <TextField {...params} label="Pick a club to edit" />
             )}
             // onChange={props.selected_event}
             onChange={(event, newValue) => {
