@@ -34,7 +34,11 @@ connectDB();
 
 //CORS
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 // Sanitize data
 app.use(mongoSanitize());
 // set security headers
