@@ -31,21 +31,29 @@ const EventsList = () => {
       );
     });
   }
-  const ipref=useRef();
-  const searchHandler=(e)=>{
+  const ipref = useRef();
+  const searchHandler = (e) => {
     // make api call, sort items which start with the given input
-    console.log("input : ",ipref.current.value)
+    e.preventDefault();
+    let input = ipref.current.value;
+    console.log("input : ", ipref.current.value);
     axios
       .get(`${configData.SERVER_URL}/api/v1/events/`)
       .then((data) => {
-        console.log(data.data.data);
-        let f=[];
-        
-        setData(data.data.data);
+        let g = data.data.data;
+        let f = [];
+        let n = data.data.data.length;
+        for (let i = 0; i < n; i++) {
+          if (g[i].title.toLowerCase().includes(input)) {
+            f= [...f, g[i]];
+          }
+          console.log("Starts with :",f);
+        }
+        // console.log("F : ", f);
+        setData(f);
       })
-      .catch((err) => {
-      });
-  }
+      .catch((err) => {});
+  };
 
   // Runs only when the component loads
   useEffect(() => {
