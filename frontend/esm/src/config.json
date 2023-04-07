@@ -1,3 +1,3 @@
 {
-  "SERVER_URL": "https://esm-restapi.vercel.app"
+  "SERVER_URL": "http://localhost:5000"
 }
