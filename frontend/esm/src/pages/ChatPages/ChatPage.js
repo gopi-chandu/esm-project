@@ -121,7 +121,7 @@ const ChatPage = () => {
 export default ChatPage;
 const options = [
 
-  "What's Happening RIGHT NOW?",
+  "What's Happening RIGHT NOW",
 
   "GDSC",
 
