@@ -45,9 +45,9 @@ const EventsList = () => {
         let n = data.data.data.length;
         for (let i = 0; i < n; i++) {
           if (g[i].title.toLowerCase().includes(input.toLowerCase())) {
-            f= [...f, g[i]];
+            f = [...f, g[i]];
           }
-          console.log("Starts with :",f);
+          console.log("Starts with :", f);
         }
         // console.log("F : ", f);
         setData(f);
@@ -57,12 +57,16 @@ const EventsList = () => {
 
   // Runs only when the component loads
   useEffect(() => {
+    var config = {
+      headers: { "Access-Control-Allow-Origin": "*" },
+      mode: 'no-cors',
+    };
     axios.defaults.baseURL = "https://api.example.com";
     axios.defaults.headers.common["Authorization"] = "AUTH_TOKEN";
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
     axios
-      .get(`${configData.SERVER_URL}/api/v1/events/`)
+      .get(`${configData.SERVER_URL}/api/v1/events/`,config)
       .then((data) => {
         ctx.setOffline(false);
         console.log(data.data.data);
