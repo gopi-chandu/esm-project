@@ -21,10 +21,18 @@ dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 // for socket io
+//CORS
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+  })
+);
 const server = http.createServer(app);
 // const io = socketio(server, {
 //   cors: {
-//     origin: "http://localhost:5001",
+//     origin: "*",
 //     methods: ["GET", "POST"],
 //   },
 // });
@@ -32,13 +40,6 @@ app.use(bodyParser.json());
 //connect to database
 connectDB();
 
-//CORS
-const cors = require("cors");
-app.use(
-  cors({
-    origin: "*",
-  })
-);
 // Sanitize data
 app.use(mongoSanitize());
 // set security headers
