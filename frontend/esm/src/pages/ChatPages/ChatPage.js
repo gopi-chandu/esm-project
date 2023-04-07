@@ -6,7 +6,7 @@ import Chat from "./Chat";
 import Paper from "@mui/material/Paper";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import configData from "../../config.json"
+import configData from "../../config.json";
 import AuthContext from "../../store/auth-context";
 import axios from "axios";
 
@@ -37,9 +37,9 @@ const ChatPage = () => {
       })
       .then((data) => {
         let d = data.data.data;
-        console.log("data : ",d)
-        setUsername(d.name)
-        setUserObject(d)
+        console.log("data : ", d);
+        setUsername(d.name);
+        setUserObject(d);
       })
       .catch((err) => {
         console.log(err);
@@ -62,7 +62,6 @@ const ChatPage = () => {
               <Paper className="w-5/6 md:w-1/2 mx-auto ">
                 <h3 className="text-2xl pb-10 mt-0 pt-10 pt-5">Join A Chat</h3>
                 <input
-
                   className="pb-10"
                   type="text"
                   placeholder="John..."
@@ -107,7 +106,12 @@ const ChatPage = () => {
             </div>
           </div>
         ) : (
-          <Chat socket={socket} username={username} room={room} user={userObject} />
+          <Chat
+            socket={socket}
+            username={username}
+            room={room}
+            user={userObject}
+          />
         )}
       </div>
     </div>
@@ -115,5 +119,58 @@ const ChatPage = () => {
 };
 
 export default ChatPage;
+const options = [
 
-const options = ["Timepass", "hello"];
+  "What's Happening RIGHT NOW?",
+
+  "GDSC",
+
+  "CSEA",
+  
+  "ECEA",
+
+  "CodeChef Chapter - NITAP",
+
+  "Training & Placement Cell",
+
+  "Praayatnam",
+
+  "Dhwani (Music Club)",
+
+  "Dance and Dramatics",
+
+  "Painting and Photography",
+
+  "Literary and Debate",
+
+  "Entrepreneurship and Innovation Cell",
+
+  "Shreshta",
+
+  "AI and Robotics",
+
+  "Graphics Cafe",
+
+  "Nature and Value Education",
+
+  "Magazine",
+
+  "Task Force",
+
+  "Physical Education",
+
+  "Shilpi (Model Making Lobby)",
+
+  "E-Yantra (Drones and Electric Vehicles)",
+
+  "Brindavanam (Horticultural Designs)",
+
+  "Chitram (Short Films and Movies)",
+  
+  "Education",
+  
+  "Movies & TV Series",
+  
+  "Misc."
+
+];
