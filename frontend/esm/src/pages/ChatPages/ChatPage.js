@@ -121,7 +121,7 @@ const ChatPage = () => {
 export default ChatPage;
 const options = [
 
-  "What's Happening RIGHT NOW",
+  "What's_Happening_RIGHT_NOW",
 
   "GDSC",
 
@@ -129,47 +129,47 @@ const options = [
   
   "ECEA",
 
-  "CodeChef Chapter - NITAP",
+  "CodeChef_Chapter-NITAP",
 
-  "Training & Placement Cell",
+  "Training_&_Placement_Cell",
 
   "Praayatnam",
 
-  "Dhwani (Music Club)",
+  "Dhwani_(Music_Club)",
 
-  "Dance and Dramatics",
+  "Dance_and_Dramatics",
 
-  "Painting and Photography",
+  "Painting_and_Photography",
 
-  "Literary and Debate",
+  "Literary_and_Debate",
 
-  "Entrepreneurship and Innovation Cell",
+  "Entrepreneurship_and_Innovation Cell",
 
   "Shreshta",
 
-  "AI and Robotics",
+  "AI_and_Robotics",
 
-  "Graphics Cafe",
+  "Graphics_Cafe",
 
-  "Nature and Value Education",
+  "Nature_and_Value_Education",
 
   "Magazine",
 
-  "Task Force",
+  "Task_Force",
 
-  "Physical Education",
+  "Physical_Education",
 
-  "Shilpi (Model Making Lobby)",
+  "Shilpi_(Model_Making_Lobby)",
 
-  "E-Yantra (Drones and Electric Vehicles)",
+  "E-Yantra_(Drones_and_Electric_Vehicles)",
 
-  "Brindavanam (Horticultural Designs)",
+  "Brindavanam_(Horticultural_Designs)",
 
-  "Chitram (Short Films and Movies)",
+  "Chitram_(Short_Films_and_Movies)",
   
   "Education",
   
-  "Movies & TV Series",
+  "Movies_&_TV_Series",
   
   "Misc."
 
