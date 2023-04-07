@@ -120,13 +120,12 @@ const ChatPage = () => {
 
 export default ChatPage;
 const options = [
-
   "What's_Happening_RIGHT_NOW",
 
   "GDSC",
 
   "CSEA",
-  
+
   "ECEA",
 
   "CodeChef_Chapter-NITAP",
@@ -166,11 +165,10 @@ const options = [
   "Brindavanam_(Horticultural_Designs)",
 
   "Chitram_(Short_Films_and_Movies)",
-  
-  "Education",
-  
-  "Movies_&_TV_Series",
-  
-  "Misc."
 
+  "Education",
+
+  "Movies_&_TV_Series",
+
+  "Misc.",
 ];
