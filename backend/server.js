@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const socketio = require("socket.io");
+// const socketio = require("socket.io");
 const http = require("http");
 const color = require("colors"); // for colors in terminal
 const dotenv = require("dotenv"); // for loading env files
