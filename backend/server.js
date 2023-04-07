@@ -22,12 +22,12 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 // for socket io
 const server = http.createServer(app);
-const io = socketio(server, {
-  cors: {
-    origin: "http://localhost:5001",
-    methods: ["GET", "POST"],
-  },
-});
+// const io = socketio(server, {
+//   cors: {
+//     origin: "http://localhost:5001",
+//     methods: ["GET", "POST"],
+//   },
+// });
 app.use(bodyParser.json());
 //connect to database
 connectDB();
@@ -85,24 +85,24 @@ app.use("/", (req, res) => {
 });
 
 // -----------------
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
+// io.on("connection", (socket) => {
+//   console.log(`User Connected: ${socket.id}`);
 
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
-  });
+//   socket.on("join_room", (data) => {
+//     socket.join(data);
+//     console.log(`User with ID: ${socket.id} joined room: ${data}`);
+//   });
 
-  socket.on("send_message", async (data) => {
-    // store here in database
-    await Message.create(data);
-    socket.to(data.room).emit("receive_message", data);
-  });
+//   socket.on("send_message", async (data) => {
+//     // store here in database
+//     await Message.create(data);
+//     socket.to(data.room).emit("receive_message", data);
+//   });
 
-  socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("User Disconnected", socket.id);
+//   });
+// });
 
 // ------------------------
 
