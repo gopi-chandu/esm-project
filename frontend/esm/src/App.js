@@ -26,9 +26,11 @@ import AdminDashboard from "./pages/AdminPages/AdminDashboard";
 
 // Chat Page
 import ChatPage from "./pages/ChatPages/ChatPage";
+// About Page
+import About from "./pages/about/About";
 // Map Page
 import MapPage from "./pages/MapPage/MapPage";
-
+import Error from "./pages/Error";
 // State management context API
 import AuthContext from "./store/auth-context";
 // import AdminPage from "./pages/AdminObnselete/AdminPage";
@@ -99,6 +101,9 @@ function App() {
           {ctx.isLoggedIn && admin && (
             <Route path="/admin" element={adminContent}></Route>
           )}
+          {ctx.isLoggedIn && !admin && (
+            <Route path="/admin" element={<Error></Error>}></Route>
+          )}
           {ctx.isLoggedIn && <Route path="/" element={eventsPage}></Route>}
           {!ctx.isLoggedIn && (
             <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
@@ -116,6 +121,9 @@ function App() {
           ></Route>
           {ctx.isLoggedIn && (
             <Route path="/profile" element={profilePage}></Route>
+          )}
+          {ctx.isLoggedIn && (
+            <Route path="/about" element={<About></About>}></Route>
           )}
           {/* {ctx.isLoggedIn &&  ctx.isAdmin && (
             <Route path="/admin" element={<AdminDashboard />}></Route>

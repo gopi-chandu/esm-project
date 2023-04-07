@@ -18,7 +18,7 @@ const SideBar = () => {
     { title: "Chat", src: "Chat", to: "/chat" },
     { title: "Map", src: "Chat", to: "/map" },
     // { title: "Q&A", src: "Chat", to: "/qna" },
-    // { title: "Articles", src: "Chat", to: "/articles" },
+    { title: "Admin", src: "Chat", to: "/admin" },
     { title: "About", src: "Chat", to: "/about" },
     // { title: "Accounts", src: "User", gap: true },
   ];

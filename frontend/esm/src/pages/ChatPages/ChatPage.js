@@ -116,4 +116,4 @@ const ChatPage = () => {
 
 export default ChatPage;
 
-const options = ["world", "hello"];
+const options = ["Timepass", "hello"];

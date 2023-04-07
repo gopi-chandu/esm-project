@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import LoadingAnimation from "../../components/UI/LoadingAnimation";
@@ -19,7 +19,7 @@ const EventsList = () => {
   // let content=0;
   let content = "";
   if (data) {
-    console.log(data);
+    // console.log(data);
     content = data.map((element, index) => {
       let url = "/events/" + element._id;
       return (
@@ -30,6 +30,21 @@ const EventsList = () => {
         </li>
       );
     });
+  }
+  const ipref=useRef();
+  const searchHandler=(e)=>{
+    // make api call, sort items which start with the given input
+    console.log("input : ",ipref.current.value)
+    axios
+      .get(`${configData.SERVER_URL}/api/v1/events/`)
+      .then((data) => {
+        console.log(data.data.data);
+        let f=[];
+        
+        setData(data.data.data);
+      })
+      .catch((err) => {
+      });
   }
 
   // Runs only when the component loads
@@ -96,7 +111,7 @@ const EventsList = () => {
           <p className="w-40 mx-auto bg-white p-2 rounded rounded-lg mb-3 ">
             Events List
           </p>
-          <form className="scale-[90px]">
+          <form className="scale-[90px]" onChange={searchHandler}>
             <div className="md:mr-20 md:mt-4">
               <label
                 htmlFor="default-search"
@@ -128,6 +143,7 @@ const EventsList = () => {
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-0 outline-transparent "
                   placeholder="Events ..."
                   required
+                  ref={ipref}
                 ></input>
                 <button
                   type="submit"

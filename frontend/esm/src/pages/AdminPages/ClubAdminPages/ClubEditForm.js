@@ -94,7 +94,7 @@ const ClubEditForm = (props) => {
         </div>
       </Paper>
       <Paper className="mx-auto flex flex-col px-20 gap-y-4 w-5/6 md:w-1/2">
-        <h2 className="text-3xl mb-3 pt-3 ">Add club</h2>
+        <h2 className="text-3xl mb-3 pt-3 ">Edit a club</h2>
         <TextField
           // fullWidth
           variant="standard"
