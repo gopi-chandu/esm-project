@@ -37,6 +37,7 @@ const ClubAddForm = () => {
     axios
       .post(`${configData.SERVER_URL}/api/v1/clubs/`, club, {
         headers: {
+          'Access-Control-Allow-Origin': '*',
           "Content-Type": "application/json",
           Authorization: "Bearer " + ctx.token,
         },
@@ -53,7 +54,7 @@ const ClubAddForm = () => {
       })
       .catch((err) => {
         // ctx.setOffline(true);
-        console.log("No internet connection", err);
+        // console.log("No internet connection", err);
       });
   };
   const handleReset = () => {

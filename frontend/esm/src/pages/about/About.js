@@ -1,8 +1,13 @@
 import { Paper } from "@mui/material";
 import React from "react";
 
+//Configs
+import configData from "../../config.json";
+
 const About = () => {
   let e = "";
+  let url1=`${configData.SERVER_URL}/uploads/dev/varma2.jpeg`;
+  let url2=`${configData.SERVER_URL}/uploads/dev/gopi.jpg`;
   return (
     <div className="w-full h-full bg-blue-300">
         <div className="bg-blue-500 h-20">
@@ -15,7 +20,7 @@ const About = () => {
             <div className="bg-blue-200">
               <img
                 className="object-cover "
-                src="http://localhost:5000/uploads/dev/varma2.jpeg"
+                src={url1}
               ></img>
             </div>
           </div>
@@ -42,7 +47,7 @@ const About = () => {
             <div className="bg-blue-200">
               <img
                 className="object-cover "
-                src="http://localhost:5000/uploads/dev/gopi.jpg"
+                src={url2}
               ></img>
             </div>
           </div>

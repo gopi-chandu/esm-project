@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import Home from "@mui/icons-material/Home";
+import InfoIcon from '@mui/icons-material/Info';
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import QuestionAnswer from "@mui/icons-material/QuestionAnswer";
 import AdminPanelSettings from "@mui/icons-material/AdminPanelSettings";
@@ -64,6 +65,12 @@ const BottomBar = () => {
           icon={<AccountCircle />}
           component={NavLink}
           to="/profile"
+        />
+        <BottomNavigationAction
+          label="About"
+          icon={<InfoIcon />}
+          component={NavLink}
+          to="/about"
         />
       </BottomNavigation>
     </div>

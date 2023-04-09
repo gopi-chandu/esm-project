@@ -123,7 +123,15 @@ function App() {
             <Route path="/profile" element={profilePage}></Route>
           )}
           {ctx.isLoggedIn && (
-            <Route path="/about" element={<About></About>}></Route>
+            <Route
+              path="/about"
+              element={
+                <div>
+                  <About></About>
+                  <BottomBar></BottomBar>
+                </div>
+              }
+            ></Route>
           )}
           {/* {ctx.isLoggedIn &&  ctx.isAdmin && (
             <Route path="/admin" element={<AdminDashboard />}></Route>
@@ -136,9 +144,9 @@ function App() {
                 <div className="flex flex-col md:flex-row">
                   <SideBar></SideBar>
                   <div className="md:w-300">
-                  <ChatPage />
+                    <ChatPage />
                   </div>
-                  
+
                   <BottomBar></BottomBar>
                 </div>
               }

@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const path = require("path");
 const socketio = require("socket.io");
@@ -20,6 +21,7 @@ var hpp = require("hpp"); // http paramter pollution
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
+app.use(cors());
 // for socket io
 const server = http.createServer(app);
 const io = socketio(server, {
@@ -33,8 +35,6 @@ app.use(bodyParser.json());
 connectDB();
 
 //CORS
-const cors = require("cors");
-app.use(cors());
 // Sanitize data
 app.use(mongoSanitize());
 // set security headers
