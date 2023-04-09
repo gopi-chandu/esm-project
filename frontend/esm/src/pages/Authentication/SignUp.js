@@ -110,7 +110,7 @@ const SignUp = () => {
                     User Name
                   </div>
                   <input
-                    className="h-8 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
+                    className="h-6 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
                       border-b-blue-200 "
                     ref={nameRef}
                   ></input>
@@ -120,7 +120,7 @@ const SignUp = () => {
                     Email
                   </div>
                   <input
-                    className="h-8 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
+                    className="h-6 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
                       border-b-blue-200 "
                     ref={emailRef}
                   ></input>
@@ -131,7 +131,7 @@ const SignUp = () => {
                   </div>
                   <input
                     type="password"
-                    className="h-8 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
+                    className="h-6 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
                     border-b-blue-200  "
                     ref={passwordRef}
                   ></input>
@@ -142,12 +142,13 @@ const SignUp = () => {
                   </div>
                   <input
                     type="password"
-                    className="h-8 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
+                    className="h-6 w-full p-1 text-gray-700 placeholder-gray-600  outline-none border-0 border-b-2
                     border-b-blue-200  "
                     ref={confirmPasswordRef}
                   ></input>
                 </div>
                 <Button>Sign Up</Button>
+                <div className="h-3"></div>
                 <div className="space-x-1 text-sm text-center text-md">
                   already have an account?
                   <NavLink to="/login" className="font-semibold text-blue-500">
