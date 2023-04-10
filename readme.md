@@ -2,7 +2,9 @@
 
 ## Project Name : Event Status and Management (ESM)
 
-
+Visit the website 
+- [https://esmg.netlify.app/](https://esmg.netlify.app/) [frontend]
+- [https://event-sockets.onrender.com/](https://event-sockets.onrender.com/)    [backend]
 
 ## Authors
 
